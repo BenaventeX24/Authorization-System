@@ -19,5 +19,4 @@ export const issueAccessToken = (req: Request): { accessToken: string } => {
   } catch (e) {
     throw new Error("Authentication failed");
   }
-  return { accessToken: "" };
 };

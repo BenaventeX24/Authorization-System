@@ -10,10 +10,13 @@ import {
 } from "type-graphql";
 import { prisma } from "../prisma-client";
 import { compareSync, hash } from "bcryptjs";
-import { sign } from "jsonwebtoken";
 import { GraphContext } from "./GraphContext";
 import { AuthMiddleware } from "./auth-middlerware";
-import { issueRefreshToken } from "@/token/issue-refresh-token";
+import {
+  issueRefreshToken,
+  revokeRefreshToken,
+} from "@/token/issue-refresh-token";
+import { issueAccessToken } from "@/token/issue-access-token";
 
 @ObjectType()
 export class LoginResult {
@@ -67,16 +70,8 @@ export class Authentication {
         .then((user: any) => {
           if (user) {
             if (compareSync(password, user.password)) {
-              result = {
-                accessToken: sign(
-                  { user_id: user?.user_id },
-                  process.env.TOKEN_SECRET as string,
-                  {
-                    expiresIn: "2m",
-                  }
-                ),
-              };
-              issueRefreshToken(user.user_id, user.token_v, req, res);
+              issueRefreshToken(req, res, user.user_id, user.token_v);
+              result = issueAccessToken(req);
             } else result = new Error("Incorrect email or password");
           } else result = new Error("Incorrect email or password");
         });
@@ -87,5 +82,12 @@ export class Authentication {
     }
 
     return result;
+  }
+
+  @Mutation(() => Boolean)
+  async logout(@Ctx() { res, req }: GraphContext) {
+    revokeRefreshToken(req, res);
+
+    return true;
   }
 }
