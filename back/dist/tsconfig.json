@@ -1,8 +1,4 @@
 {
-  "ts-node": {
-    // Do not forget to `npm i -D tsconfig-paths`
-    "require": ["tsconfig-paths/register"]
-  },
   "compilerOptions": {
     "noEmitOnError": true,
     "target": "ES6",
@@ -28,8 +24,7 @@
     "resolveJsonModule": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "*": ["node_modules/*"]
+      "@/*": ["src/*"]
     }
   },
   "compileOnSave": true,
