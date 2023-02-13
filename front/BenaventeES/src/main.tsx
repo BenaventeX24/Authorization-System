@@ -1,12 +1,12 @@
-import { ApolloClient, createHttpLink, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { ApolloLink, ApolloProvider, Observable, Operation } from '@apollo/react-hooks';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
-import jwtDecode from 'jwt-decode';
+import jwtDecode, { JwtPayload } from 'jwt-decode';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { getAccessToken, setAccessToken } from '@/accessToken';
+import { getAccessToken, setAccessToken, setAuthentication } from '@/accessToken';
 
 import { App } from './App';
 
@@ -49,42 +49,53 @@ const requestLink = new ApolloLink(
     }),
 );
 
-const tokenLink = new TokenRefreshLink({
-  accessTokenField: 'accessToken',
-  isTokenValidOrUndefined: () => {
-    const token = getAccessToken();
+export const isTokenValidOrUndefined = () => {
+  const token = getAccessToken();
 
-    if (!token) {
-      console.log('====================================');
-      console.log('aja');
-      console.log('====================================');
-      return true;
-    }
+  if (!token) {
+    return true;
+  }
 
-    try {
-      const { exp } = jwtDecode(token) as any;
+  try {
+    const { exp } = jwtDecode(token) as JwtPayload;
 
+    if (exp) {
       if (Date.now() >= exp * 1000) {
+        console.log('expired');
         return false;
       } else {
+        console.log('not expired');
         return true;
       }
-    } catch {
-      return false;
+    } else {
+      console.log('no exp');
+
+      return true;
     }
-  },
+  } catch (e) {
+    console.log('error' + e);
+    console.log(token);
+    return false;
+  }
+};
+
+const tokenLink = new TokenRefreshLink({
+  accessTokenField: 'accessToken',
+  isTokenValidOrUndefined: isTokenValidOrUndefined,
   fetchAccessToken: async () => {
     return fetch('http://localhost:8000/refresh-token', {
       method: 'POST',
       credentials: 'include',
     }).then((response) => response.json());
   },
-  handleFetch: (accessToken, _operation: Operation) => {
+  handleFetch: (accessToken) => {
+    setAuthentication(true);
     return setAccessToken(accessToken);
   },
-  handleResponse: (operation: Operation, accessTokenField) =>
+  handleResponse: (_operation: Operation, accessTokenField) =>
     console.log(accessTokenField),
   handleError: (err: Error, operation: Operation) => {
+    setAuthentication(false);
     console.log('====================================');
     console.log(operation);
     console.log('====================================');

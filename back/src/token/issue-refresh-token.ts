@@ -7,9 +7,9 @@ export const issueRefreshToken = (
   user_id: number,
   token_v: number
 ) => {
-  if (!req.cookies["__Secure-1lcb"]) {
+  if (!req.cookies[process.env.COOKIE_NAME as string]) {
     res.cookie(
-      "__Secure-1lcb",
+      process.env.COOKIE_NAME as string,
 
       sign(
         { user_id: user_id, token_v: token_v },
@@ -21,17 +21,16 @@ export const issueRefreshToken = (
       {
         expires: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        path: "/refresh_token",
-        domain: "localhost",
         secure: true,
+        sameSite: "none",
       }
     );
   }
 };
 
 export const revokeRefreshToken = (req: Request, res: Response) => {
-  if (!req.cookies["__Secure-1lcb"]) {
-    res.cookie("__Secure-1lcb", "", {
+  if (!req.cookies[process.env.COOKIE_NAME as string]) {
+    res.cookie(process.env.COOKIE_NAME as string, "", {
       httpOnly: true,
       path: "/refresh_token",
       domain: "localhost",

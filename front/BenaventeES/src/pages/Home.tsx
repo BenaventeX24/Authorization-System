@@ -8,6 +8,7 @@ export const Home: React.FC = () => {
 
   return (
     <div>
+      a
       {data.getEmails.map((user, i) => (
         <div key={i}>{user.email}</div>
       ))}

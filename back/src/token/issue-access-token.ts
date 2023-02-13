@@ -4,15 +4,16 @@ import { Request } from "express";
 export const issueAccessToken = (req: Request): { accessToken: string } => {
   try {
     let payload = verify(
-      req.cookies["__Secure-1lcb"],
+      req.cookies[process.env.COOKIE_NAME as string],
       process.env.TOKEN_SECRET!
     ) as any;
+
     return {
       accessToken: sign(
         { user_id: payload.user_id },
         process.env.TOKEN_SECRET as string,
         {
-          expiresIn: "2m",
+          expiresIn: "1m",
         }
       ),
     };

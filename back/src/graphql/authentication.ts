@@ -16,7 +16,8 @@ import {
   issueRefreshToken,
   revokeRefreshToken,
 } from "@/token/issue-refresh-token";
-import { issueAccessToken } from "@/token/issue-access-token";
+import { sign } from "jsonwebtoken";
+import { Prisma } from "@prisma/client";
 
 @ObjectType()
 export class LoginResult {
@@ -26,6 +27,11 @@ export class LoginResult {
 
 @Resolver()
 export class Authentication {
+  @Query(() => String)
+  hello() {
+    return `hi!`;
+  }
+
   @Query(() => String)
   @UseMiddleware(AuthMiddleware)
   bye(@Ctx() { payload }: GraphContext) {
@@ -46,8 +52,16 @@ export class Authentication {
           username: username,
         },
       });
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        // The .code property can be accessed in a type-safe manner
+        if (e.code === "P2002") {
+          console.log(
+            "There is a unique constraint violation, a new user cannot be created with this email"
+          );
+        }
+      }
+      throw e;
       return false;
     }
     return true;
@@ -59,6 +73,8 @@ export class Authentication {
     @Arg("password") password: string,
     @Ctx() { req, res }: GraphContext
   ): Promise<LoginResult | Error> {
+    console.log(email, password);
+
     let result: LoginResult | Error = new LoginResult();
     try {
       await prisma.users
@@ -71,9 +87,18 @@ export class Authentication {
           if (user) {
             if (compareSync(password, user.password)) {
               issueRefreshToken(req, res, user.user_id, user.token_v);
-              result = issueAccessToken(req);
+              result = {
+                accessToken: sign(
+                  { user_id: user.user_id },
+                  process.env.TOKEN_SECRET as string,
+                  {
+                    expiresIn: "2m",
+                  }
+                ),
+              };
             } else result = new Error("Incorrect email or password");
           } else result = new Error("Incorrect email or password");
+          return result;
         });
     } catch (e) {
       console.log(e);
