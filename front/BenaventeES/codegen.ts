@@ -8,9 +8,6 @@ const config: CodegenConfig = {
     'src/generated/graphql.tsx': {
       plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
     },
-    // './graphql.schema.json': {
-    //   plugins: ['introspection'],
-    // },
   },
   config: {
     withComponent: false,

@@ -1,15 +1,17 @@
 import { z } from 'zod';
 
-export const username = z
+export const authName = z
   .string()
-  .min(8, 'Min of 8 characters required for username')
-  .max(16, 'Max of 16 allowed characters for username')
-  .regex(
-    new RegExp('^[a-zA-Z0-9]{4,10}$'),
-    'Not special characters allowed for username',
-  );
-export const email = z.string().email();
-export const password = z
+  .min(2, 'Must be at least 2 characters in length')
+  .max(16, 'Must not exceed 16 characters in length')
+  .regex(new RegExp('^[a-zA-Z0-9]{4,10}$'), 'No special characters allowed');
+export const authSurname = z
+  .string()
+  .min(2, 'Must be at least 2 characters in length')
+  .max(22, 'Must not exceed 22 characters in length')
+  .regex(new RegExp('^[a-zA-Z0-9]{4,10}$'), 'No special characters allowed');
+export const authEmail = z.string().email('Email must contain @ and domain extension');
+export const authPassword = z
   .string()
   .regex(new RegExp('.*[A-Z].*'), 'One uppercase character')
   .regex(new RegExp('.*[a-z].*'), 'One lowercase character')

@@ -42,14 +42,16 @@ export class Authentication {
   async register(
     @Arg("email") email: string,
     @Arg("password") password: string,
-    @Arg("username") username: string
+    @Arg("name") name: string,
+    @Arg("surname") surname: string
   ) {
     try {
       await prisma.users.create({
         data: {
           email: email,
           password: await hash(password, 12),
-          username: username,
+          name: name,
+          surname: surname,
         },
       });
     } catch (e: any) {
@@ -62,7 +64,6 @@ export class Authentication {
         }
       }
       throw e;
-      return false;
     }
     return true;
   }

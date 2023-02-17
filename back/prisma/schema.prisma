@@ -12,64 +12,10 @@ model Users {
   createdAt DateTime @default(now())
   email     String   @unique
   password  String   @db.VarChar(256)
-  username  String   @db.VarChar(15)
+  name      String   @db.VarChar(16)
+  surname   String   @db.VarChar(16)
   role      Role?    @default(COSTUMER)
   token_v   Int?     @default(0)
-
-  orders        Order[]
-  creation_info product_creation[]
-}
-
-model Product {
-  product_id        Int     @id @default(autoincrement())
-  name              String
-  price             Int
-  discount_price    Int?
-  image_url         String
-  descriptin        String
-  circuit_image_url String?
-  stock             Int
-
-  tags          products_tags[]
-  orders        Order[]
-  creation_info product_creation[]
-}
-
-model Tag {
-  tag_id Int    @id @default(autoincrement())
-  tag    String
-
-  products products_tags[]
-}
-
-model products_tags {
-  product    Product @relation(fields: [product_id], references: [product_id])
-  product_id Int
-  tag        Tag     @relation(fields: [tag_id], references: [tag_id])
-  tag_id     Int
-
-  @@id([tag_id, product_id])
-}
-
-model Order {
-  product    Product  @relation(fields: [product_id], references: [product_id])
-  product_id Int
-  user       Users    @relation(fields: [user_id], references: [user_id])
-  user_id    Int
-  order_date DateTime @default(now())
-  quantity   Int
-
-  @@id([user_id, product_id])
-}
-
-model product_creation {
-  product       Product  @relation(fields: [product_id], references: [product_id])
-  product_id    Int
-  user          Users    @relation(fields: [user_id], references: [user_id])
-  user_id       Int
-  creation_date DateTime @default(now())
-
-  @@id([user_id, product_id])
 }
 
 enum Role {
