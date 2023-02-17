@@ -1,10 +1,9 @@
 # Fully functional authorization system
-# Using
-#   - Typescript
-#   - React
-#   - Express
-#   - Prisma - PostgreSQL
-#   - GraphQL
+##   - Typescript
+##   - React
+##   - Express
+##   - Prisma - PostgreSQL
+##   - GraphQL
 
     graphql-codegen
     emotion/styled
