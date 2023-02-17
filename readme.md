@@ -5,6 +5,7 @@
 ##   - Prisma - PostgreSQL
 ##   - GraphQL
 
+    Apollo
     graphql-codegen
     emotion/styled
     material-ui
