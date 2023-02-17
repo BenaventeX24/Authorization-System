@@ -56,10 +56,9 @@ const FormField: React.FC<FormFieldProps> = ({
         {label}
       </Typography>
       <CustomFormField
-        onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
-          handleValidation(e.currentTarget.value);
-          console.log(validationError);
-        }}
+        onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) =>
+          handleValidation(e.currentTarget.value)
+        }
         aria-describedby={id}
         name={name}
         type={type}

@@ -4,12 +4,12 @@ export const authName = z
   .string()
   .min(2, 'Must be at least 2 characters in length')
   .max(16, 'Must not exceed 16 characters in length')
-  .regex(new RegExp('^[a-zA-Z0-9]{4,10}$'), 'No special characters allowed');
+  .regex(new RegExp('^[a-zA-Z0-9]{2,16}$'), 'No special characters allowed');
 export const authSurname = z
   .string()
   .min(2, 'Must be at least 2 characters in length')
   .max(22, 'Must not exceed 22 characters in length')
-  .regex(new RegExp('^[a-zA-Z0-9]{4,10}$'), 'No special characters allowed');
+  .regex(new RegExp('^[a-zA-Z0-9]{2,22}$'), 'No special characters allowed');
 export const authEmail = z.string().email('Email must contain @ and domain extension');
 export const authPassword = z
   .string()

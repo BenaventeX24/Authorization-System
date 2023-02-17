@@ -6,10 +6,10 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import { Home } from '@/pages/Home';
 
-import { Login } from './pages/Authentication/Login';
-import { ProtectedRoutes } from './pages/Authentication/ProtectedRoutes';
-import { Register } from './pages/Authentication/Register';
 import { Bye } from './pages/bye/Bye';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { ProtectedRoutes } from './utils/ProtectedRoutes';
 
 export const AppRoutes: React.FC = () => {
   const theme = createTheme({
