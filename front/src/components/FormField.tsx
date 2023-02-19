@@ -52,7 +52,7 @@ const FormField: React.FC<FormFieldProps> = ({
 
   return (
     <>
-      <Typography sx={{ alignSelf: 'flex-start', marginBottom: '-18px' }}>
+      <Typography sx={{ alignSelf: 'flex-start', marginBottom: '-10px' }}>
         {label}
       </Typography>
       <CustomFormField

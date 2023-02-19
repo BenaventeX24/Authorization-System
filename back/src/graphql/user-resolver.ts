@@ -1,4 +1,4 @@
-import { prisma } from "@/prisma-client";
+import { prisma } from "@/prisma_utils/prisma-client";
 import { Field, ObjectType, Query, Resolver } from "type-graphql";
 
 @ObjectType()

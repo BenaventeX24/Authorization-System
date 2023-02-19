@@ -8,7 +8,7 @@ import {
   UseMiddleware,
   Query,
 } from "type-graphql";
-import { prisma } from "../prisma-client";
+import { prisma } from "../prisma_utils/prisma-client";
 import { compareSync, hash } from "bcryptjs";
 import { GraphContext } from "./GraphContext";
 import { AuthMiddleware } from "./auth-middlerware";
@@ -18,6 +18,8 @@ import {
 } from "@/token/issue-refresh-token";
 import { sign } from "jsonwebtoken";
 import { Prisma } from "@prisma/client";
+import { Request, Response } from "express";
+import { PrismaErrorHandler } from "@/prisma_utils/prisma-error-handler";
 
 @ObjectType()
 export class LoginResult {
@@ -38,44 +40,12 @@ export class Authentication {
     return `bye ${payload!.user_id}`;
   }
 
-  @Mutation(() => Boolean)
-  async register(
-    @Arg("email") email: string,
-    @Arg("password") password: string,
-    @Arg("name") name: string,
-    @Arg("surname") surname: string
-  ) {
-    try {
-      await prisma.users.create({
-        data: {
-          email: email,
-          password: await hash(password, 12),
-          name: name,
-          surname: surname,
-        },
-      });
-    } catch (e: any) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError) {
-        // The .code property can be accessed in a type-safe manner
-        if (e.code === "P2002") {
-          console.log(
-            "There is a unique constraint violation, a new user cannot be created with this email"
-          );
-        }
-      }
-      throw e;
-    }
-    return true;
-  }
-
-  @Mutation(() => LoginResult)
-  async login(
-    @Arg("email") email: string,
-    @Arg("password") password: string,
-    @Ctx() { req, res }: GraphContext
-  ): Promise<LoginResult | Error> {
-    console.log(email, password);
-
+  authenticate = async (
+    email: string,
+    password: string,
+    req: Request,
+    res: Response
+  ): Promise<LoginResult | Error> => {
     let result: LoginResult | Error = new LoginResult();
     try {
       await prisma.users
@@ -97,17 +67,50 @@ export class Authentication {
                   }
                 ),
               };
-            } else result = new Error("Incorrect email or password");
-          } else result = new Error("Incorrect email or password");
+            } else throw new Error("Incorrect email or password");
+          } else throw new Error("Incorrect email or password");
           return result;
         });
     } catch (e) {
       console.log(e);
-
       result = new Error("Internal server error");
     }
-
     return result;
+  };
+
+  @Mutation(() => Boolean)
+  async register(
+    @Arg("email") email: string,
+    @Arg("password") password: string,
+    @Arg("name") name: string,
+    @Arg("surname") surname: string,
+    @Ctx() { req, res }: GraphContext
+  ) {
+    try {
+      await prisma.users.create({
+        data: {
+          email: email,
+          password: await hash(password, 12),
+          name: name,
+          surname: surname,
+        },
+      });
+    } catch (e: any) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        PrismaErrorHandler(e);
+      }
+      throw e;
+    }
+    return this.authenticate(email, password, req, res);
+  }
+
+  @Mutation(() => LoginResult)
+  async login(
+    @Arg("email") email: string,
+    @Arg("password") password: string,
+    @Ctx() { req, res }: GraphContext
+  ): Promise<LoginResult | Error> {
+    return this.authenticate(email, password, req, res);
   }
 
   @Mutation(() => Boolean)

@@ -13,7 +13,6 @@ const SendButton: React.FC<ButtonProps> = ({ initialValues, schema }: ButtonProp
 
   React.useEffect(() => {
     try {
-      console.log(values);
       schema.parse(values);
       setReadyToSend(true);
     } catch (err: any) {

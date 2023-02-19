@@ -10,17 +10,6 @@ import { useLoginMutation } from '@/generated/graphql';
 import { authEmail, authPassword } from '@/utils/zodTypes';
 
 export const Login: React.FC = () => {
-  const [login, { loading }] = useLoginMutation();
-
-  const loginSchema = z.object({
-    email: authEmail,
-    password: authPassword,
-  });
-
-  type formProps = z.infer<typeof loginSchema>;
-
-  const initialValues: formProps = { email: '', password: '' };
-
   return (
     <Container
       sx={{
