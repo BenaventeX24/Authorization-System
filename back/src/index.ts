@@ -3,12 +3,11 @@ import express from "express";
 import * as dotenv from "dotenv";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { Authentication } from "@/graphql/authentication";
+import { Authentication } from "@/resolvers/authentication";
 import cookieParser from "cookie-parser";
 import { issueAccessToken } from "./token/issue-access-token";
 import cors from "cors";
-import { userResolver } from "./graphql/user-resolver";
-//import cors from "cors";
+import { userResolver } from "./resolvers/user-resolver";
 
 dotenv.config();
 const app = express();
@@ -43,9 +42,6 @@ const app = express();
 
     app.get("/", (_req, _res) => {});
     app.post("/refresh-token", (req, res) => {
-      let response = issueAccessToken(req);
-      console.log(response);
-
       res.json(issueAccessToken(req));
     });
 

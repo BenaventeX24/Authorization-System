@@ -21,7 +21,7 @@ export type fields = {
   name: string;
   type: string;
   placeholder: string;
-  validation: any;
+  validation?: any;
   label: string;
 };
 

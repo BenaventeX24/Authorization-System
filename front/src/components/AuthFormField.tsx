@@ -4,6 +4,8 @@ import { Field } from 'formik';
 import React from 'react';
 import { ZodError } from 'zod';
 
+import { PasswordField } from './PasswordField';
+
 export const CustomFormField = styled(Field)`
   background: rgba(249, 249, 249, 0.8);
 
@@ -13,6 +15,9 @@ export const CustomFormField = styled(Field)`
 
   width: 272px;
   height: 26px;
+
+  display: flex;
+  justify-content: space-between;
 `;
 
 interface FormFieldProps {
@@ -55,19 +60,30 @@ const FormField: React.FC<FormFieldProps> = ({
       <Typography sx={{ alignSelf: 'flex-start', marginBottom: '-10px' }}>
         {label}
       </Typography>
-      <CustomFormField
-        onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) =>
-          handleValidation(e.currentTarget.value)
-        }
-        aria-describedby={id}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
-          setAnchorEl(e.currentTarget);
-          handleValidation(e.currentTarget.value);
-        }}
-      />
+      {type === 'password' ? (
+        <PasswordField
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          handleValidation={handleValidation}
+          setAnchorEl={setAnchorEl}
+        />
+      ) : (
+        <CustomFormField
+          onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) =>
+            handleValidation(e.currentTarget.value)
+          }
+          aria-describedby={id}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+            setAnchorEl(e.currentTarget);
+            handleValidation(e.currentTarget.value);
+          }}
+        />
+      )}
+
       {validationError ? (
         <Popover
           id={id}

@@ -29,12 +29,11 @@ export const issueRefreshToken = (
 };
 
 export const revokeRefreshToken = (req: Request, res: Response) => {
-  if (!req.cookies[process.env.COOKIE_NAME as string]) {
+  if (req.cookies[process.env.COOKIE_NAME as string]) {
     res.cookie(process.env.COOKIE_NAME as string, "", {
       httpOnly: true,
-      path: "/refresh_token",
-      domain: "localhost",
       secure: true,
+      sameSite: "none",
     });
   }
 };

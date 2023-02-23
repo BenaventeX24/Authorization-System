@@ -1,9 +1,9 @@
-import { setContext } from '@apollo/client/link/context';
-import { ApolloLink, Observable, Operation } from '@apollo/react-hooks';
+//import { setContext } from '@apollo/client/link/context';
+import { ApolloLink, Observable } from '@apollo/react-hooks';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
-import { getAccessToken, setAccessToken, setAuthentication } from '@/accessToken';
+import { getAccessToken, setAccessToken, setAuthentication } from '@/utils/accessToken';
 
 export const tokenLink = new TokenRefreshLink({
   accessTokenField: 'accessToken',
@@ -30,25 +30,22 @@ export const tokenLink = new TokenRefreshLink({
     setAuthentication(true);
     return setAccessToken(accessToken);
   },
-  handleResponse: (_operation: Operation, accessTokenField) =>
-    console.log(accessTokenField),
-  handleError: (err: Error, operation: Operation) => {
+  handleResponse: () => {
+    return;
+  },
+  handleError: () => {
     setAuthentication(false);
-    console.log('====================================');
-    console.log(operation);
-    console.log('====================================');
-    console.error(err);
   },
 });
 
-export const authLink = setContext((_, { headers }) => {
+/*export const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
       authorization: getAccessToken() ? `Bearer ${getAccessToken()}` : '',
     },
   };
-});
+});*/
 
 export const requestLink = new ApolloLink(
   (operation, forward) =>

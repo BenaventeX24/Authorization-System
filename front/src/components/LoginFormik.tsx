@@ -4,17 +4,18 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ZodError } from 'zod';
 
-import { initialValues, registerSchema } from '@/utils/registerUtils';
+import { setAccessToken } from '@/utils/accessToken';
+import { initialValues } from '@/utils/loginUtils';
 
-type RegisterFormProps = {
-  registerHook: any;
+type LoginFormProps = {
+  loginHook: any;
   children: React.ReactNode;
 };
 
-const RegisterFormik: React.FC<RegisterFormProps> = ({
-  registerHook,
+const RegisterFormik: React.FC<LoginFormProps> = ({
+  loginHook,
   children,
-}: RegisterFormProps) => {
+}: LoginFormProps) => {
   const navigate = useNavigate();
 
   return (
@@ -30,26 +31,20 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
           try {
-            const name = values.name as string,
-              surname = values.surname as string,
-              email = values.email as string,
-              password = values.password as string,
-              passwordConfirmation = values.passwordConfirmation as string;
+            const email = values.email as string,
+              password = values.password as string;
 
-            if (password !== passwordConfirmation)
-              throw new Error('PASSWORDS_DONT_MATCH');
-
-            registerSchema.parse(values);
-
-            const response = await registerHook({
+            const response = await loginHook({
               variables: {
                 email,
-                name,
-                surname,
                 password,
               },
             });
-            if (response.data?.register) navigate('/login');
+
+            if (response.data?.login) {
+              setAccessToken(response.data?.login);
+              navigate('/');
+            } else throw new Error('SOMETHING_WENT_WRONG');
           } catch (err: any) {
             if (err instanceof ZodError) {
               throw new Error('FIELDS_VALIDATION_ERROR');

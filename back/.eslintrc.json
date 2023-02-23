@@ -21,6 +21,9 @@
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "no-underscore-dangle": "error",
+    "no-duplicate-variable": 0,
+    "no-constant-condition": 0,
+    "no-unused-variable": [0],
     "@typescript-eslint/naming-convention": [
       "error",
       {

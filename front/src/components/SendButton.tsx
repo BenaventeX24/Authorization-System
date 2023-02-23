@@ -5,15 +5,20 @@ import { AnyZodObject } from 'zod';
 
 interface ButtonProps {
   initialValues: any;
-  schema: AnyZodObject;
+  schema?: AnyZodObject;
+  children: string;
 }
-const SendButton: React.FC<ButtonProps> = ({ initialValues, schema }: ButtonProps) => {
+const SendButton: React.FC<ButtonProps> = ({
+  children,
+  initialValues,
+  schema,
+}: ButtonProps) => {
   const [readyToSend, setReadyToSend] = useState<boolean>(false);
   const { values } = useFormikContext<typeof initialValues>() ?? {};
 
   React.useEffect(() => {
     try {
-      schema.parse(values);
+      schema?.parse(values);
       setReadyToSend(true);
     } catch (err: any) {
       setReadyToSend(false);
@@ -23,12 +28,12 @@ const SendButton: React.FC<ButtonProps> = ({ initialValues, schema }: ButtonProp
   return (
     <>
       <Button
-        sx={{ width: '272px', fontWeight: '700' }}
+        sx={{ width: '272px', fontWeight: '700', marginTop: '8px' }}
         type="submit"
         variant="contained"
         disabled={!readyToSend}
       >
-        Log in
+        {children}
       </Button>
     </>
   );
