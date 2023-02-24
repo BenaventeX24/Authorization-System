@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import { AppRoutes } from '@/AppRoutes';
-import { setAccessToken } from '@/utils/accessToken';
+import { tokenActions } from '@/redux/reducers/tokenReducer';
+import store from '@/redux/redux';
 
 export const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,7 @@ export const App: React.FC = () => {
       credentials: 'include',
     }).then(async (x) => {
       try {
-        setAccessToken(await x.json());
+        store.dispatch(tokenActions.setToken(await x.json()));
         setLoading(false);
       } catch (e) {
         setLoading(false);

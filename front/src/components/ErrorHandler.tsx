@@ -10,7 +10,6 @@ type ErrorHandlerProps = {
 export const ErrorHandler: React.FC<ErrorHandlerProps> = ({
   error,
 }: ErrorHandlerProps) => {
-  console.log(error);
   if (error === undefined || error.message === undefined) return <></>;
   switch (error.message) {
     case 'REPEATED_EMAIL':

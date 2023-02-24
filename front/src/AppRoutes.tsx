@@ -2,14 +2,17 @@ import '../index.css';
 
 import createTheme from '@mui/material/styles/createTheme';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import Navbar from '@/components/Navbar';
 import { Bye } from '@/pages/bye/Bye';
 import { Home } from '@/pages/Home';
 import { Login } from '@/pages/Login';
 import { Logout } from '@/pages/Logout';
 import { PreventLogout, ProtectedRoutes } from '@/pages/ProtectedRoutes';
 import { Register } from '@/pages/Register';
+import store from '@/redux/redux';
 
 export const AppRoutes: React.FC = () => {
   const theme = createTheme({
@@ -29,26 +32,8 @@ export const AppRoutes: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">home</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/bye">Bye</Link>
-            </li>
-            <li>
-              <Link to="/logout">Logout</Link>
-            </li>
-          </ul>
-        </nav>
+      <Provider store={store}>
+        <Navbar />
         <ThemeProvider theme={theme}>
           <Routes>
             <Route element={<ProtectedRoutes />}>
@@ -62,7 +47,7 @@ export const AppRoutes: React.FC = () => {
             </Route>
           </Routes>
         </ThemeProvider>
-      </div>
+      </Provider>
     </BrowserRouter>
   );
 };

@@ -3,6 +3,8 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { useLogOutQuery } from '@/generated/graphql';
+import { tokenActions } from '@/redux/reducers/tokenReducer';
+import store from '@/redux/redux';
 
 export const Logout: React.FC = () => {
   const { data, loading } = useLogOutQuery({
@@ -11,5 +13,8 @@ export const Logout: React.FC = () => {
 
   if (loading) return <CircularProgress />;
 
-  return data?.logout ? <Navigate to="/login" /> : <></>;
+  if (data?.logout) {
+    store.dispatch(tokenActions.setToken(''));
+    return <Navigate to="/login" />;
+  } else return <></>;
 };

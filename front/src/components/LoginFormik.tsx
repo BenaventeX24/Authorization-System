@@ -4,7 +4,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ZodError } from 'zod';
 
-import { setAccessToken } from '@/utils/accessToken';
+import { tokenActions } from '@/redux/reducers/tokenReducer';
+import store from '@/redux/redux';
 import { initialValues } from '@/utils/loginUtils';
 
 type LoginFormProps = {
@@ -42,7 +43,8 @@ const RegisterFormik: React.FC<LoginFormProps> = ({
             });
 
             if (response.data?.login) {
-              setAccessToken(response.data?.login);
+              store.dispatch(tokenActions.setToken(response.data?.login));
+
               navigate('/');
             } else throw new Error('SOMETHING_WENT_WRONG');
           } catch (err: any) {

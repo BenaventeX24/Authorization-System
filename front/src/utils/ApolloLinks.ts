@@ -3,12 +3,13 @@ import { ApolloLink, Observable } from '@apollo/react-hooks';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
-import { getAccessToken, setAccessToken, setAuthentication } from '@/utils/accessToken';
+import { tokenActions } from '@/redux/reducers/tokenReducer';
+import store from '@/redux/redux';
 
 export const tokenLink = new TokenRefreshLink({
   accessTokenField: 'accessToken',
   isTokenValidOrUndefined: () => {
-    const token = getAccessToken();
+    const token = store.getState().accessToken;
     if (!token) return true;
     try {
       const { exp } = jwtDecode(token) as JwtPayload;
@@ -27,14 +28,13 @@ export const tokenLink = new TokenRefreshLink({
     }).then((response) => response.json());
   },
   handleFetch: (accessToken) => {
-    setAuthentication(true);
-    return setAccessToken(accessToken);
+    store.dispatch(tokenActions.setToken(accessToken));
   },
   handleResponse: () => {
     return;
   },
   handleError: () => {
-    setAuthentication(false);
+    store.dispatch(tokenActions.setToken(''));
   },
 });
 
@@ -53,11 +53,11 @@ export const requestLink = new ApolloLink(
       let handle: any;
       Promise.resolve(operation)
         .then((operation) => {
-          const accessToken = getAccessToken();
+          const accessToken = store.getState().accessToken;
           if (accessToken) {
             operation.setContext({
               headers: {
-                authorization: `bearer ${accessToken}`,
+                authorization: `bearer ${store.getState().accessToken}`,
               },
             });
           }
