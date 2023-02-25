@@ -1,18 +1,23 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { useLogOutQuery } from '@/generated/graphql';
+import { useLogoutQuery } from '@/generated/graphql';
 import { tokenActions } from '@/redux/reducers/tokenReducer';
-import store from '@/redux/redux';
 
 export const Logout: React.FC = () => {
-  const { data, loading } = useLogOutQuery({
+  console.log('call');
+  const dispatch = useDispatch();
+  const { data, loading } = useLogoutQuery({
     fetchPolicy: 'network-only',
   });
 
   useEffect(() => {
-    store.dispatch(tokenActions.setToken(''));
+    if (data) {
+      dispatch(tokenActions.setToken(''));
+      localStorage.removeItem('userdata');
+    }
   }, [data]);
 
   if (loading) return <CircularProgress />;

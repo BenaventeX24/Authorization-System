@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { RootState } from '@/redux/redux';
 
@@ -18,7 +18,6 @@ const ProfileNavbar = () => {
   const userData = useSelector((state: RootState) => state.user);
 
   const navigate = useNavigate();
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -30,6 +29,8 @@ const ProfileNavbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  console.log(userData);
 
   return (
     <React.Fragment>
@@ -43,7 +44,7 @@ const ProfileNavbar = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{userData.name.charAt(0)}</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -94,11 +95,7 @@ const ProfileNavbar = () => {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            navigate('/logout');
-          }}
-        >
+        <MenuItem onClick={() => navigate('/logout')}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

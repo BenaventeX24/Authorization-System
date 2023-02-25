@@ -9,7 +9,6 @@ export const ProtectedRoutes = () => {
   });
 
   if (loading) return <CircularProgress />;
-  console.log(data?.testAuth);
 
   return data?.testAuth ? <Outlet /> : <Navigate to="/login" />;
 };

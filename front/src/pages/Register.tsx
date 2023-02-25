@@ -1,4 +1,4 @@
-import { CircularProgress, Typography } from '@mui/material';
+import { CircularProgress, Container, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,29 +14,38 @@ export const Register: React.FC = () => {
   const [register, { loading, error }] = useRegisterMutation();
 
   return (
-    <RegisterFormik registerHook={register}>
-      <AuthForm title="Register">
-        {registerFields.map((field) => {
-          return (
-            <FormField
-              key={field.name}
-              name={field.name}
-              type={field.type}
-              placeholder={field.placeholder}
-              label={field.label}
-              validation={field.validation}
-            />
-          );
-        })}
-        {loading && <CircularProgress />}
-        <ErrorHandler error={error} />
-        <SendButton initialValues={initialValues} schema={registerSchema}>
-          Register
-        </SendButton>
-        <Typography>
-          Already have an account? <Link to="/login">Log in</Link>
-        </Typography>
-      </AuthForm>
-    </RegisterFormik>
+    <Container
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '20px',
+      }}
+    >
+      <RegisterFormik registerHook={register}>
+        <AuthForm title="Register">
+          {registerFields.map((field) => {
+            return (
+              <FormField
+                key={field.name}
+                name={field.name}
+                type={field.type}
+                placeholder={field.placeholder}
+                label={field.label}
+                validation={field.validation}
+              />
+            );
+          })}
+          {loading && <CircularProgress />}
+          <ErrorHandler error={error} />
+          <SendButton initialValues={initialValues} schema={registerSchema}>
+            Register
+          </SendButton>
+          <Typography>
+            Already have an account? <Link to="/login">Log in</Link>
+          </Typography>
+        </AuthForm>
+      </RegisterFormik>
+    </Container>
   );
 };

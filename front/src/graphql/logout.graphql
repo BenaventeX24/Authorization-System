@@ -1,3 +1,3 @@
-query logOut {
+query logout {
   logout
 }
