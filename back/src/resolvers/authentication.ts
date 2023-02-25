@@ -39,12 +39,6 @@ export class Authentication {
     return true;
   }
 
-  @Query(() => String)
-  @UseMiddleware(AuthMiddleware)
-  bye(@Ctx() { payload }: GraphContext) {
-    return `bye ${payload!.user_id}`;
-  }
-
   authenticate = async (
     email: string,
     password: string,
