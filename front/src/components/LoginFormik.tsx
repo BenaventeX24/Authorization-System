@@ -4,6 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ZodError } from 'zod';
 
+import { LoginMutationResult } from '@/generated/graphql';
 import { tokenActions } from '@/redux/reducers/tokenReducer';
 import store from '@/redux/redux';
 import { initialValues } from '@/utils/loginUtils';
@@ -35,15 +36,22 @@ const RegisterFormik: React.FC<LoginFormProps> = ({
             const email = values.email as string,
               password = values.password as string;
 
-            const response = await loginHook({
+            const response: LoginMutationResult = await loginHook({
               variables: {
                 email,
                 password,
               },
             });
 
-            if (response.data?.login) {
-              store.dispatch(tokenActions.setToken(response.data?.login));
+            if (response.data) {
+              store.dispatch(tokenActions.setToken(response.data.login.accessToken));
+              localStorage.setItem(
+                'userdata',
+                JSON.stringify({
+                  name: response.data.login.username,
+                  surname: response.data.login.usersurname,
+                }),
+              );
 
               navigate('/');
             } else throw new Error('SOMETHING_WENT_WRONG');

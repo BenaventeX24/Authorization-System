@@ -19,12 +19,16 @@ import {
 import { sign } from "jsonwebtoken";
 import { Request, Response } from "express";
 import { PrismaErrorHandler } from "@/prisma_utils/prisma-error-handler";
-import { Prisma } from "@prisma/client";
+import { Prisma, Users } from "@prisma/client";
 
 @ObjectType()
 export class LoginResult {
   @Field()
   accessToken: string;
+  @Field()
+  username: string;
+  @Field()
+  usersurname: string;
 }
 
 @Resolver()
@@ -54,16 +58,11 @@ export class Authentication {
           where: {
             email: email,
           },
-          select: {
-            password: true,
-            user_id: true,
-            token_v: true,
-          },
         })
       ).then(async (user: any) => {
         if (user) {
           if (compareSync(password, user.password)) {
-            issueRefreshToken(req, res, user.user_id, user.token_v);
+            issueRefreshToken(req, res, user.user_id, user.token_v!);
             result = {
               accessToken: sign(
                 { user_id: user.user_id },
@@ -72,6 +71,8 @@ export class Authentication {
                   expiresIn: "2m",
                 }
               ),
+              username: user.name,
+              usersurname: user.surname,
             };
           } else throw new Error("WRONG_CREDENTIALS");
         } else throw new Error("WRONG_CREDENTIALS");
@@ -106,7 +107,7 @@ export class Authentication {
     } catch (e: any) {
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         throw PrismaErrorHandler(e);
-      }
+      } else throw e;
     }
     return true;
   }

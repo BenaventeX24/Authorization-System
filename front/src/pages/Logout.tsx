@@ -1,5 +1,5 @@
 import { CircularProgress } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { useLogOutQuery } from '@/generated/graphql';
@@ -11,10 +11,11 @@ export const Logout: React.FC = () => {
     fetchPolicy: 'network-only',
   });
 
+  useEffect(() => {
+    store.dispatch(tokenActions.setToken(''));
+  }, [data]);
+
   if (loading) return <CircularProgress />;
 
-  if (data?.logout) {
-    store.dispatch(tokenActions.setToken(''));
-    return <Navigate to="/login" />;
-  } else return <></>;
+  return <Navigate to="/login" />;
 };

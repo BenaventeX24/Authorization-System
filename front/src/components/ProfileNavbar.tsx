@@ -1,7 +1,5 @@
 import Logout from '@mui/icons-material/Logout';
-import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
-import { Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -11,18 +9,28 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { RootState } from '@/redux/redux';
+
 const ProfileNavbar = () => {
+  const userData = useSelector((state: RootState) => state.user);
+
   const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -74,19 +82,12 @@ const ProfileNavbar = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
+        <MenuItem disabled sx={{ opacity: '100%' }}>
+          <Avatar sx={{ opacity: '100%', color: 'black' }} />
+          {userData.name} {userData.surname}
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem>
+
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />

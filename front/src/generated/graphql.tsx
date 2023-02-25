@@ -18,6 +18,8 @@ export type Scalars = {
 export type LoginResult = {
   __typename?: 'LoginResult';
   accessToken: Scalars['String'];
+  username: Scalars['String'];
+  usersurname: Scalars['String'];
 };
 
 export type Mutation = {
@@ -64,12 +66,12 @@ export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetUsersQuery = { __typename?: 'Query', getEmails: Array<{ __typename?: 'getUsersEmail', email: string }> };
 
 export type LoginMutationVariables = Exact<{
-  email: Scalars['String'];
   password: Scalars['String'];
+  email: Scalars['String'];
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginResult', accessToken: string } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginResult', accessToken: string, username: string, usersurname: string } };
 
 export type LogOutQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -159,9 +161,11 @@ export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
 export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
 export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
 export const LoginDocument = gql`
-    mutation Login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
+    mutation Login($password: String!, $email: String!) {
+  login(password: $password, email: $email) {
     accessToken
+    username
+    usersurname
   }
 }
     `;
@@ -180,8 +184,8 @@ export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutati
  * @example
  * const [loginMutation, { data, loading, error }] = useLoginMutation({
  *   variables: {
- *      email: // value for 'email'
  *      password: // value for 'password'
+ *      email: // value for 'email'
  *   },
  * });
  */

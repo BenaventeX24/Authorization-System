@@ -23,16 +23,21 @@ export const Navbar = () => {
         <Toolbar>
           {TOKEN ? (
             <>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
-              <CustomLink to="/">Home</CustomLink>
-              <CustomLink to="/register">Register</CustomLink>
-              <CustomLink to="/login">Login</CustomLink>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <CustomLink to="/">Home</CustomLink>
+              </Typography>
               <CustomLink to="/bye">Bye</CustomLink>
               <CustomLink to="/logout">Logout</CustomLink>
               <ProfileNavbar />
             </>
           ) : (
-            <></>
+            <>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                BenaventeX24
+              </Typography>
+              <CustomLink to="/register">Register</CustomLink>
+              <CustomLink to="/login">Login</CustomLink>
+            </>
           )}
         </Toolbar>
       </AppBar>

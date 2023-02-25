@@ -41,6 +41,7 @@ const app = express();
     });
 
     app.get("/", (_req, _res) => {});
+
     app.post("/refresh-token", (req, res) => {
       res.json(issueAccessToken(req));
     });

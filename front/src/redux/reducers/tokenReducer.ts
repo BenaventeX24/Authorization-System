@@ -8,13 +8,4 @@ export const accessTokenSlice = createSlice({
   },
 });
 
-export const authContextSlice = createSlice({
-  name: 'isAuth',
-  initialState: false,
-  reducers: {
-    setAuth: (state: boolean, action: PayloadAction<boolean>) => (state = action.payload),
-  },
-});
-
 export const tokenActions = accessTokenSlice.actions;
-export const authActions = authContextSlice.actions;

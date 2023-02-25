@@ -13,7 +13,7 @@ const client = new ApolloClient({
     //authLink,
 
     new HttpLink({
-      uri: 'http://localhost:8000/api',
+      uri: import.meta.env.VITE_SERVER_URL,
       credentials: 'include',
     }),
   ]),

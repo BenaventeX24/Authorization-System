@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from '@/components/Navbar';
-import { Bye } from '@/pages/bye/Bye';
+import { Bye } from '@/pages/Bye';
 import { Home } from '@/pages/Home';
 import { Login } from '@/pages/Login';
 import { Logout } from '@/pages/Logout';
