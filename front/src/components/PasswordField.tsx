@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Box, IconButton, InputAdornment } from '@mui/material';
+import { Box, IconButton, InputAdornment, Popover, Typography } from '@mui/material';
 import { Field } from 'formik';
 import React from 'react';
+import { ZodError } from 'zod';
+
+import ValidationPopover from '@/components/ValidationPopover';
 
 export const CustomFormFieldPassword = styled(Field)`
   background: rgba(249, 249, 249, 0.8);
@@ -14,20 +17,16 @@ export const CustomFormFieldPassword = styled(Field)`
 
 interface FormFieldPasswordProps {
   children?: React.ReactNode;
-  id?: string;
   name: string;
   placeholder?: string;
   label?: string;
-  handleValidation: any;
-  setAnchorEl: React.Dispatch<HTMLInputElement | null>;
+  validation?: any;
 }
 
 export const PasswordField: React.FC<FormFieldPasswordProps> = ({
-  id,
   name,
   placeholder,
-  handleValidation,
-  setAnchorEl,
+  validation,
 }: FormFieldPasswordProps) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -35,6 +34,18 @@ export const PasswordField: React.FC<FormFieldPasswordProps> = ({
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState<HTMLInputElement | null>(null);
+  const [validationError, setValidationError] = React.useState<ZodError<any> | null>();
+
+  const handleValidation = (value: string) => {
+    try {
+      validation?.parse(value);
+      setValidationError(null);
+    } catch (err: any) {
+      setValidationError(err);
+    }
   };
 
   return (
@@ -52,7 +63,7 @@ export const PasswordField: React.FC<FormFieldPasswordProps> = ({
         }}
       >
         <CustomFormFieldPassword
-          aria-describedby={id}
+          aria-describedby={name}
           name={name}
           onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
             setAnchorEl(e.currentTarget);
@@ -78,6 +89,13 @@ export const PasswordField: React.FC<FormFieldPasswordProps> = ({
           </IconButton>
         </InputAdornment>
       </Box>
+      {validationError && (
+        <ValidationPopover
+          validationError={validationError}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+        />
+      )}
     </>
   );
 };

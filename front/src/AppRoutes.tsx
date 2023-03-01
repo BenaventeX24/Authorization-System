@@ -7,11 +7,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Navbar from '@/components/Navbar';
 import { Home } from '@/pages/Home';
-import { Login } from '@/pages/Login';
+import Login from '@/pages/Login';
 import { Logout } from '@/pages/Logout';
 import { PreventLogout, ProtectedRoutes } from '@/pages/ProtectedRoutes';
 import { Register } from '@/pages/Register';
-import store from '@/redux/redux';
+import store from '@/redux/store';
 
 export const AppRoutes: React.FC = () => {
   const theme = createTheme({

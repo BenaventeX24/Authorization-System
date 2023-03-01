@@ -12,7 +12,7 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { RootState } from '@/redux/redux';
+import { RootState } from '@/redux/store';
 
 const ProfileNavbar = () => {
   const userData = useSelector((state: RootState) => state.user);

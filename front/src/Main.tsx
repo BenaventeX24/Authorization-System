@@ -6,7 +6,7 @@ import { /*authLink,*/ requestLink, tokenLink } from '@/utils/ApolloLinks';
 
 import { App } from './App';
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: ApolloLink.from([
     tokenLink,
     requestLink,

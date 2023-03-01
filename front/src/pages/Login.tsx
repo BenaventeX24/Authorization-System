@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Container, Typography } from '@mui/material';
+import { CircularProgress, Container, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ import { useLoginMutation } from '@/generated/graphql';
 import { loginFields } from '@/utils/loginUtils';
 import { initialValues } from '@/utils/loginUtils';
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   const [login, { loading, error }] = useLoginMutation();
   return (
     <Container
@@ -52,3 +52,5 @@ export const Login: React.FC = () => {
     </Container>
   );
 };
+
+export default Login;

@@ -5,7 +5,7 @@ export const authName = z
   .min(2, 'Must be at least 2 characters in length')
   .max(16, 'Must not exceed 16 characters in length')
   .regex(
-    new RegExp('^[A-Z][a-zA-Z]{2,16}$'),
+    new RegExp('^[A-Z ][a-zA-Z ]{2,16}$'),
     'First letter must be upercase and only letters',
   );
 export const authSurname = z
@@ -13,7 +13,7 @@ export const authSurname = z
   .min(2, 'Must be at least 2 characters in length')
   .max(22, 'Must not exceed 22 characters in length')
   .regex(
-    new RegExp('^[A-Z][a-zA-Z]{2,16}$'),
+    new RegExp('^[A-Z][a-zA-Z ]{2,16}$'),
     'First letter must be upercase and only letters',
   );
 export const authEmail = z.string().email('Email must contain @ and domain extension');

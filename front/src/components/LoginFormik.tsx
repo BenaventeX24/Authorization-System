@@ -7,7 +7,7 @@ import { ZodError } from 'zod';
 import { LoginMutationResult } from '@/generated/graphql';
 import { tokenActions } from '@/redux/reducers/tokenReducer';
 import { userActions } from '@/redux/reducers/userReducer';
-import store from '@/redux/redux';
+import store from '@/redux/store';
 import { initialValues } from '@/utils/loginUtils';
 
 type LoginFormProps = {

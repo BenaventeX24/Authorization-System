@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import ProfileNavbar from '@/components/ProfileNavbar';
-import { RootState } from '@/redux/redux';
+import { RootState } from '@/redux/store';
 
 export const CustomLink = styled(Link)`
   margin: 0 10px;

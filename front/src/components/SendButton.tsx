@@ -32,6 +32,7 @@ const SendButton: React.FC<ButtonProps> = ({
         type="submit"
         variant="contained"
         disabled={!readyToSend}
+        data-testid="send-btn"
       >
         {children}
       </Button>

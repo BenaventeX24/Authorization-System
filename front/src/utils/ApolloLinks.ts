@@ -4,7 +4,7 @@ import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
 import { tokenActions } from '@/redux/reducers/tokenReducer';
-import store from '@/redux/redux';
+import store from '@/redux/store';
 
 export const tokenLink = new TokenRefreshLink({
   accessTokenField: 'accessToken',
