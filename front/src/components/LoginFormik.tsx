@@ -38,7 +38,6 @@ const RegisterFormik: React.FC<LoginFormProps> = ({
           });
 
           if (response.data) {
-            console.log(response.data);
             store.dispatch(tokenActions.setToken(response.data.login.accessToken));
             localStorage.setItem(
               'userdata',

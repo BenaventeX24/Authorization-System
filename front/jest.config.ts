@@ -150,7 +150,7 @@ export default {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ['__config__'],
+  testPathIgnorePatterns: ['__config__', '__mocks__'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],

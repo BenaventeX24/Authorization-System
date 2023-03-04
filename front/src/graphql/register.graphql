@@ -6,5 +6,7 @@ mutation Register(
 ) {
   register(surname: $surname, name: $name, password: $password, email: $email) {
     accessToken
+    username
+    usersurname
   }
 }

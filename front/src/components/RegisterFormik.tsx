@@ -3,6 +3,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ZodError } from 'zod';
 
+import { RegisterMutationResult } from '@/generated/graphql';
+import { tokenActions } from '@/redux/reducers/tokenReducer';
+import store from '@/redux/store';
 import { initialValues, registerSchema } from '@/utils/registerUtils';
 
 type RegisterFormProps = {
@@ -31,7 +34,7 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
 
           registerSchema.parse(values);
 
-          const response = await registerHook({
+          const response: RegisterMutationResult = await registerHook({
             variables: {
               email,
               name,
@@ -39,7 +42,20 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
               password,
             },
           });
-          if (response.data?.register) navigate('/login');
+
+          if (response.data) {
+            localStorage.setItem(
+              'userdata',
+              JSON.stringify({
+                name: response.data.register.username,
+                surname: response.data.register.usersurname,
+              }),
+            );
+
+            store.dispatch(tokenActions.setToken(response.data.register.accessToken));
+
+            navigate('/');
+          } else throw new Error('SOMETHING_WENT_WRONG');
         } catch (err: any) {
           if (err instanceof ZodError) {
             throw new Error('FIELDS_VALIDATION_ERROR');

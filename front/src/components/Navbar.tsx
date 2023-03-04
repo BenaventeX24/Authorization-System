@@ -30,9 +30,7 @@ export const Navbar = () => {
         <CustomLink to="/">Benavente</CustomLink>
       </Typography>
       {TOKEN ? (
-        <>
-          <ProfileNavbar />
-        </>
+        <ProfileNavbar />
       ) : (
         <>
           <CustomLink to="/register">Register</CustomLink>

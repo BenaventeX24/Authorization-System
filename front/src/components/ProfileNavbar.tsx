@@ -9,13 +9,14 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { RootState } from '@/redux/store';
+import { IUserData } from '@/redux/reducers/userReducer';
 
 const ProfileNavbar = () => {
-  const userData = useSelector((state: RootState) => state.user);
+  const userData: IUserData = localStorage.getItem('userdata')
+    ? JSON.parse(localStorage.getItem('userdata') as string)
+    : { name: '', surname: '' };
 
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

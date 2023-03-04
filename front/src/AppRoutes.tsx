@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import '../index.css';
 
 import createTheme from '@mui/material/styles/createTheme';
@@ -5,7 +6,6 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Navbar from '@/components/Navbar';
 import { Home } from '@/pages/Home';
 import Login from '@/pages/Login';
 import { Logout } from '@/pages/Logout';
@@ -32,7 +32,6 @@ export const AppRoutes: React.FC = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <Navbar />
         <ThemeProvider theme={theme}>
           <Routes>
             <Route element={<ProtectedRoutes />}>
