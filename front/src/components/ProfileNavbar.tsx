@@ -31,8 +31,6 @@ const ProfileNavbar = () => {
     setAnchorEl(null);
   };
 
-  console.log(userData);
-
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>

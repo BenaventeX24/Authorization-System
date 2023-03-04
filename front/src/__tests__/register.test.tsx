@@ -1,26 +1,20 @@
 import '@testing-library/jest-dom';
 import '@testing-library/react/dont-cleanup-after-each';
 
-import * as Apollo from '@apollo/client';
 import { MockedProvider } from '@apollo/client/testing';
-import { MutationHookOptions } from '@apollo/react-hooks';
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
-import { ApolloClient } from 'apollo-boost';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { any } from 'zod';
 
-import { mockLocalStorage } from '@/__tests__/__mocks__/mockLocalStorage';
-import * as queries from '@/generated/graphql';
-import {
-  RegisterDocument,
-  RegisterMutation,
-  RegisterMutationVariables,
-} from '@/generated/graphql';
+import { mockedUseRegisterMutation } from '@/__tests__/__mocks__/mockedApolloHooks';
+import { mockLocalStorage } from '@/__tests__/__mocks__/mockedLocalStorage';
+import { RegisterDocument } from '@/generated/graphql';
 import { Register } from '@/pages/Register';
 import store from '@/redux/store';
 import { registerFields } from '@/utils/registerUtils';
-const { getItemMock, setItemMock } = mockLocalStorage();
+
+import { mockedUseNavigate } from './__mocks__/mockedReactRouterDom';
+const { setItemMock } = mockLocalStorage();
 
 const mocks = [
   {
@@ -29,7 +23,6 @@ const mocks = [
       variables: {
         email: 'email@email.com',
         password: 'Password123!',
-        //passwordConfirmation: 'Password123!',
         name: 'Name',
         surname: 'Surname',
       },
@@ -41,20 +34,6 @@ const mocks = [
     },
   },
 ];
-
-const mock = jest.fn();
-const useRegisterMutationMock = jest.spyOn(queries, 'useRegisterMutation');
-useRegisterMutationMock.mockImplementation(
-  (
-    baseOptions?: Apollo.MutationHookOptions<RegisterMutation, RegisterMutationVariables>,
-  ) => {
-    const options = { ...{}, ...baseOptions };
-    return Apollo.useMutation<RegisterMutation, RegisterMutationVariables>(
-      RegisterDocument,
-      options,
-    );
-  },
-);
 
 describe('Custom form fields tests', () => {
   afterAll(() => {
@@ -98,13 +77,7 @@ describe('Custom form fields tests', () => {
       const input = wrapper.container.querySelector(
         `input[name="${field.name}"]`,
       ) as Element;
-      let data = '';
-
-      for (const key in mockedData) {
-        if ((key as string) === 'email') data = mockedData[`${field.name}`];
-      }
-
-      fireEvent.change(input, { target: { value: data } });
+      fireEvent.change(input, { target: { value: mockedData[`${field.name}`] } });
     });
 
     await waitFor(() => {
@@ -121,14 +94,9 @@ describe('Custom form fields tests', () => {
     fireEvent.click(wrapper.queryByTestId('send-btn') as Element);
 
     await waitFor(() => {
-      expect(mock).toHaveBeenCalled();
-      expect(queries.useRegisterMutation).toHaveBeenCalled();
+      expect(mockedUseRegisterMutation).toHaveBeenCalled();
       expect(setItemMock).toHaveBeenCalled();
+      expect(mockedUseNavigate).toHaveBeenCalled();
     });
   });
-  //it('should render a label element with the given text', () => {});
-  //it('should render a custom password field', () => {});*/
 });
-//<BrowserRouter>
-//<Provider store={store}>
-//<MockedProvider mocks={mocks} addTypename={false}>

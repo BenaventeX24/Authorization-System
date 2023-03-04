@@ -11,7 +11,7 @@ import SendButton from '@/components/SendButton';
 import { useRegisterMutation } from '@/generated/graphql';
 import { initialValues, registerFields, registerSchema } from '@/utils/registerUtils';
 
-export const Register: React.FC<> = () => {
+export const Register: React.FC = () => {
   const [register, { loading, error }] = useRegisterMutation();
 
   return (
