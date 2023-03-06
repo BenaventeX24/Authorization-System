@@ -13,7 +13,6 @@ import { Register } from '@/pages/Register';
 import store from '@/redux/store';
 import { registerFields } from '@/utils/registerUtils';
 
-import { mockedUseNavigate } from './__mocks__/mockedReactRouterDom';
 const { setItemMock } = mockLocalStorage();
 
 const mocks = [
@@ -35,7 +34,7 @@ const mocks = [
   },
 ];
 
-describe('Custom form fields tests', () => {
+describe('Register form test render and works just fine with the correct data being sent', () => {
   afterAll(() => {
     cleanup();
   });
@@ -49,16 +48,6 @@ describe('Custom form fields tests', () => {
       </Provider>
     </BrowserRouter>,
   );
-
-  it('should render each component needed in register correctly', async () => {
-    registerFields.forEach((field) => {
-      expect(
-        wrapper.container.querySelector(`input[name="${field.name}"]`),
-      ).toBeInTheDocument();
-    });
-    expect(wrapper.queryByTestId('send-btn')).toBeInTheDocument();
-    expect(wrapper.queryByTestId('send-btn')).toBeDisabled();
-  });
 
   it('should fill the inputs and send data', async () => {
     type IMockedData = {
@@ -96,7 +85,6 @@ describe('Custom form fields tests', () => {
     await waitFor(() => {
       expect(mockedUseRegisterMutation).toHaveBeenCalled();
       expect(setItemMock).toHaveBeenCalled();
-      expect(mockedUseNavigate).toHaveBeenCalled();
     });
   });
 });

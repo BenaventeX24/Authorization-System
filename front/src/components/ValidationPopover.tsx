@@ -1,6 +1,4 @@
-import styled from '@emotion/styled';
 import { Popover, Typography } from '@mui/material';
-import { Field } from 'formik';
 import React from 'react';
 import { ZodError } from 'zod';
 
@@ -37,6 +35,7 @@ const ValidationPopover: React.FC<ValidationPopoverProps> = ({
           }}
           disableAutoFocus={true}
           disableEnforceFocus={true}
+          data-testid="validation-popover"
         >
           {validationError?.issues.map((issue, index) => {
             return (

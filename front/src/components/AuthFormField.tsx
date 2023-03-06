@@ -71,12 +71,17 @@ const FormField: React.FC<FormFieldProps> = ({
               setAnchorEl(e.currentTarget);
               handleValidation(e.currentTarget.value);
             }}
+            onBlur={() => setAnchorEl(null)}
+            onFocusOut={() => setAnchorEl(null)}
           />
-          <ValidationPopover
-            validationError={validationError}
-            anchorEl={anchorEl}
-            setAnchorEl={setAnchorEl}
-          />
+          {anchorEl && (
+            <ValidationPopover
+              id={name}
+              validationError={validationError}
+              anchorEl={anchorEl}
+              setAnchorEl={setAnchorEl}
+            />
+          )}
         </>
       )}
     </>

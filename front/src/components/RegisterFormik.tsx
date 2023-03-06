@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { ZodError } from 'zod';
 
 import { RegisterMutationResult } from '@/generated/graphql';
@@ -17,8 +17,6 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
   registerHook,
   children,
 }: RegisterFormProps) => {
-  const navigate = useNavigate();
-
   return (
     <Formik
       initialValues={initialValues}
@@ -54,7 +52,7 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
 
             store.dispatch(tokenActions.setToken(response.data.register.accessToken));
 
-            navigate('/');
+            redirect('/');
           } else throw new Error('SOMETHING_WENT_WRONG');
         } catch (err: any) {
           if (err instanceof ZodError) {
