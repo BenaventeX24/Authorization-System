@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { AppRoutes } from '@/AppRoutes';
 import { tokenActions } from '@/redux/reducers/tokenReducer';
-import { IUserData, userActions } from '@/redux/reducers/userReducer';
 import store from '@/redux/store';
 
 export const App: React.FC = () => {
@@ -16,14 +15,6 @@ export const App: React.FC = () => {
       }).then(async (x) => {
         try {
           store.dispatch(tokenActions.setToken(await x.json()));
-          const userData: IUserData = JSON.parse(
-            localStorage.getItem('userdata') as string,
-          );
-          if (userData) {
-            store.dispatch(
-              userActions.setData({ name: userData.name, surname: userData.surname }),
-            );
-          }
           setLoading(false);
         } catch (e) {
           setLoading(false);

@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { accessTokenSlice } from './reducers/tokenReducer';
-import { userReducer } from './reducers/userReducer';
 
 const store = configureStore({
   reducer: {
     accessToken: accessTokenSlice.reducer,
-    user: userReducer.reducer,
   },
 });
 
