@@ -1,5 +1,6 @@
 import { CircularProgress, Container, Typography } from '@mui/material';
-import React from 'react';
+import { ApolloError } from 'apollo-client';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthForm from '@/components/AuthForm';
@@ -13,24 +14,20 @@ import { initialValues, registerFields, registerSchema } from '@/utils/registerU
 
 export const Register: React.FC = () => {
   const [register, { loading, error }] = useRegisterMutation();
+  const [errorState, setError] = useState<Error | ApolloError | undefined>(error);
 
   return (
     <>
       <Navbar />
+
       <Container
-        disableGutters
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
-          position: 'absolute',
-          marginTop: '51px',
-          left: '50%',
-          top: '50%',
-          transform: 'translate(-50%, -50%)',
+          marginTop: '40px',
         }}
       >
-        <RegisterFormik registerHook={register}>
+        <RegisterFormik registerHook={register} setError={setError}>
           <AuthForm title="Register">
             {registerFields.map((field) => {
               return (
@@ -45,7 +42,7 @@ export const Register: React.FC = () => {
               );
             })}
             {loading && <CircularProgress />}
-            <ErrorHandler error={error} />
+            {errorState && <ErrorHandler error={errorState} />}
             <SendButton initialValues={initialValues} schema={registerSchema}>
               Register
             </SendButton>

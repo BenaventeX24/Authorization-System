@@ -95,3 +95,10 @@ describe('Register form test', () => {
     });
   });
 });
+
+describe('Register form test', () => {
+  afterAll(() => {
+    cleanup();
+  });
+  //it('should show an alert to the user saying what the error was', async () => {});
+});

@@ -1,3 +1,4 @@
+import { ApolloError } from 'apollo-client';
 import { Formik } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,15 +11,16 @@ import { initialValues, registerSchema } from '@/utils/registerUtils';
 
 type RegisterFormProps = {
   registerHook: any;
+  setError: React.Dispatch<React.SetStateAction<Error | ApolloError | undefined>>;
   children: React.ReactNode;
 };
 
 const RegisterFormik: React.FC<RegisterFormProps> = ({
   registerHook,
+  setError,
   children,
 }: RegisterFormProps) => {
   const navigate = useNavigate();
-
   return (
     <Formik
       initialValues={initialValues}
@@ -58,8 +60,10 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
           } else throw new Error('SOMETHING_WENT_WRONG');
         } catch (err: any) {
           if (err instanceof ZodError) {
-            throw new Error('FIELDS_VALIDATION_ERROR');
-          }
+            setError(err);
+          } else if (err instanceof Error) {
+            setError(err);
+          } else setError(new Error('SOMETHING_WENT_WRONG'));
         }
         actions.setSubmitting(false);
       }}

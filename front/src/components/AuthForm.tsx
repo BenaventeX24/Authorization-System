@@ -13,7 +13,6 @@ export const FormContainer = styled(Form)`
   border-radius: 10px;
   border: 1px solid gray;
   padding: 34px;
-  width: '100px';
 `;
 
 type AuthContainerProps = {

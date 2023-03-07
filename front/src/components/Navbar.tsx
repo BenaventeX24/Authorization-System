@@ -17,7 +17,7 @@ export const Navbar = () => {
   const TOKEN = useSelector((state: RootState) => state.accessToken);
   return (
     <AppBar
-      position="static"
+      position="relative"
       sx={{
         height: '66px',
         display: 'flex',
