@@ -89,7 +89,7 @@ export const PasswordField: React.FC<FormFieldPasswordProps> = ({
           </IconButton>
         </InputAdornment>
       </Box>
-      {validationError && (
+      {validationError && anchorEl && (
         <ValidationPopover
           validationError={validationError}
           anchorEl={anchorEl}
