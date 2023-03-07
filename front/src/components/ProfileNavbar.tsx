@@ -1,5 +1,4 @@
 import Logout from '@mui/icons-material/Logout';
-import Settings from '@mui/icons-material/Settings';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -86,14 +85,7 @@ const ProfileNavbar = () => {
           <Avatar sx={{ opacity: '100%', color: 'black' }} />
           {userData.name} {userData.surname}
         </MenuItem>
-
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
         <MenuItem onClick={() => navigate('/logout')}>
           <ListItemIcon>
             <Logout fontSize="small" />
