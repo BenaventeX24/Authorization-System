@@ -18,11 +18,16 @@ export const Register: React.FC = () => {
     <>
       <Navbar />
       <Container
+        disableGutters
         sx={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '20px',
+          position: 'absolute',
+          marginTop: '51px',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
         }}
       >
         <RegisterFormik registerHook={register}>
