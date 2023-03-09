@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/ErrorHandler.tsx</title>
+    <title>Code coverage report for utils/ZodTypes.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> ErrorHandler.tsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> ZodTypes.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>30/33</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>30/33</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -92,11 +92,7 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -107,61 +103,53 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Alert } from '@mui/material';
-import { ApolloError } from 'apollo-boost';
-import React from 'react';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { z } from 'zod';
 &nbsp;
-import { ErrorMessages } from '@/utils/ErrorMessages';
-&nbsp;
-type ErrorHandlerProps = {
-  error: ApolloError | Error | undefined;
-};
-&nbsp;
-export const ErrorHandler: React.FC&lt;ErrorHandlerProps&gt; = ({
-  error,
-}: ErrorHandlerProps) =&gt; {
-  console.log(error);
-  if (error === undefined || error.message === undefined) <span class="branch-0 cbranch-no" title="branch not covered" >return &lt;&gt;&lt;/&gt;;</span>
-  switch (error.message) {
-    case 'REPEATED_EMAIL':
-      return &lt;Alert severity="error"&gt;{ErrorMessages.REPEATED_EMAIL}&lt;/Alert&gt;;
-    case 'PASSWORDS_DONT_MATCH':
-      return (
-        &lt;Alert severity="warning" data-testid="alert"&gt;
-          {ErrorMessages.PASSWORDS_DONT_MATCH}
-        &lt;/Alert&gt;
-      );
-<span class="branch-0 cbranch-no" title="branch not covered" >    case 'WRONG_CREDENTIALS':</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.WRONG_CREDENTIALS}&lt;/Alert&gt;;</span>
-<span class="branch-0 cbranch-no" title="branch not covered" >    case 'FIELDS_VALIDATION_ERROR':</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.FIELDS_VALIDATION_ERROR}&lt;/Alert&gt;;</span>
-&nbsp;
-<span class="branch-0 cbranch-no" title="branch not covered" >    default:</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.DEFAULT}&lt;/Alert&gt;;</span>
-  }
-};
+export const authName = z
+  .string()
+  .min(2, 'Must be at least 2 characters in length')
+  .max(16, 'Must not exceed 16 characters in length')
+  .regex(
+    new RegExp('^[A-Z ][a-zA-Z ]{1,22}$'),
+    'First letter must be upercase and only letters',
+  );
+export const authSurname = z
+  .string()
+  .min(2, 'Must be at least 2 characters in length')
+  .max(22, 'Must not exceed 22 characters in length')
+  .regex(
+    new RegExp('^[A-Z][a-zA-Z ]{1,22}$'),
+    'First letter must be upercase and only letters',
+  );
+export const authEmail = z.string().email('Email must contain @ and domain extension');
+export const authPassword = z
+  .string()
+  .regex(new RegExp('.*[A-Z].*'), 'One uppercase character')
+  .regex(new RegExp('.*[a-z].*'), 'One lowercase character')
+  .regex(new RegExp('.*\\d.*'), 'One number')
+  .regex(
+    new RegExp('.*[`~&lt;&gt;?,./!@#$%^&amp;*()\\-_+="\'|{}\\[\\];:\\\\].*'),
+    'One special character',
+  )
+  .min(8, 'Must be at least 8 characters in length');
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

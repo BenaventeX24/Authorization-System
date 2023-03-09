@@ -1,10 +1,9 @@
-//import { setContext } from '@apollo/client/link/context';
 import { ApolloLink, Observable } from '@apollo/react-hooks';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
-import { tokenActions } from '@/redux/reducers/tokenReducer';
-import store from '@/redux/store';
+import { tokenActions } from '@/redux/reducers/TokenReducer';
+import store from '@/redux/Store';
 
 export const tokenLink = new TokenRefreshLink({
   accessTokenField: 'accessToken',
@@ -38,15 +37,6 @@ export const tokenLink = new TokenRefreshLink({
     store.dispatch(tokenActions.setToken(''));
   },
 });
-
-/*export const authLink = setContext((_, { headers }) => {
-  return {
-    headers: {
-      ...headers,
-      authorization: getAccessToken() ? `Bearer ${getAccessToken()}` : '',
-    },
-  };
-});*/
 
 export const requestLink = new ApolloLink(
   (operation, forward) =>

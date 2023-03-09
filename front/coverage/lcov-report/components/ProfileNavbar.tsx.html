@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">15.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/108</span>
+                <span class='fraction'>15/98</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">15.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/108</span>
+                <span class='fraction'>15/98</span>
             </div>
         
             
@@ -161,17 +161,7 @@
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
 <a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L99'></a><a href='#L99'>99</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -184,16 +174,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -280,7 +260,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Logout from '@mui/icons-material/Logout';
-import Settings from '@mui/icons-material/Settings';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -292,10 +271,8 @@ import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 &nbsp;
-import { IUserData } from '@/redux/reducers/userReducer';
-&nbsp;
 const ProfileNavbar = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const userData: IUserData = localStorage.getItem('userdata')</span>
+<span class="cstat-no" title="statement not covered" >  const userData = localStorage.getItem('userdata')</span>
 <span class="cstat-no" title="statement not covered" >    ? JSON.parse(localStorage.getItem('userdata') as string)</span>
 <span class="cstat-no" title="statement not covered" >    : { name: '', surname: '' };</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -367,14 +344,7 @@ const ProfileNavbar = <span class="fstat-no" title="function not covered" >() =&
 <span class="cstat-no" title="statement not covered" >          &lt;Avatar sx={{ opacity: '100%', color: 'black' }} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >          {userData.name} {userData.surname}</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/MenuItem&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >        &lt;Divider /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;MenuItem onClick={handleClose}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;ListItemIcon&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Settings fontSize="small" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/ListItemIcon&gt;</span>
-<span class="cstat-no" title="statement not covered" >          Settings</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/MenuItem&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;MenuItem onClick={() =&gt; navigate('/logout')}&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;ListItemIcon&gt;</span>
 <span class="cstat-no" title="statement not covered" >            &lt;Logout fontSize="small" /&gt;</span>
@@ -394,7 +364,7 @@ export default ProfileNavbar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-07T13:53:47.740Z
+                at 2023-03-08T19:58:56.445Z
             </div>
         <script src="../prettify.js"></script>
         <script>

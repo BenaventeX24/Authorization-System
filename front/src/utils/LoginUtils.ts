@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import { fields } from '@/utils/registerUtils';
+import { fields } from '@/utils/RegisterUtils';
 
-import { authEmail, authPassword } from './zodTypes';
+import { authEmail, authPassword } from './ZodTypes';
 
 export const loginSchema = z.object({
   email: authEmail,

@@ -10,10 +10,8 @@ import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IUserData } from '@/redux/reducers/userReducer';
-
 const ProfileNavbar = () => {
-  const userData: IUserData = localStorage.getItem('userdata')
+  const userData = localStorage.getItem('userdata')
     ? JSON.parse(localStorage.getItem('userdata') as string)
     : { name: '', surname: '' };
 

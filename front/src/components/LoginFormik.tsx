@@ -1,21 +1,23 @@
+import { ApolloError } from 'apollo-client';
 import { Formik } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ZodError } from 'zod';
 
 import { LoginMutationResult } from '@/generated/graphql';
-import { tokenActions } from '@/redux/reducers/tokenReducer';
-import store from '@/redux/store';
-import { initialValues } from '@/utils/loginUtils';
+import { tokenActions } from '@/redux/reducers/TokenReducer';
+import store from '@/redux/Store';
+import { initialValues } from '@/utils/LoginUtils';
 
 type LoginFormProps = {
   loginHook: any;
+  setError: React.Dispatch<React.SetStateAction<Error | ApolloError | undefined>>;
   children: React.ReactNode;
 };
 
 const RegisterFormik: React.FC<LoginFormProps> = ({
   loginHook,
   children,
+  setError,
 }: LoginFormProps) => {
   const navigate = useNavigate();
   return (
@@ -47,9 +49,7 @@ const RegisterFormik: React.FC<LoginFormProps> = ({
             navigate('/');
           } else throw new Error('SOMETHING_WENT_WRONG');
         } catch (err: any) {
-          if (err instanceof ZodError) {
-            throw new Error('FIELDS_VALIDATION_ERROR');
-          }
+          setError(err);
         }
         actions.setSubmitting(false);
       }}

@@ -11,7 +11,7 @@ import Login from '@/pages/Login';
 import { Logout } from '@/pages/Logout';
 import { PreventLogout, ProtectedRoutes } from '@/pages/ProtectedRoutes';
 import { Register } from '@/pages/Register';
-import store from '@/redux/store';
+import store from '@/redux/Store';
 
 export const AppRoutes: React.FC = () => {
   const theme = createTheme({

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import { AppRoutes } from '@/AppRoutes';
-import { tokenActions } from '@/redux/reducers/tokenReducer';
-import store from '@/redux/store';
+import { tokenActions } from '@/redux/reducers/TokenReducer';
+import store from '@/redux/Store';
 
 export const App: React.FC = () => {
   const [loading, setLoading] = useState(true);

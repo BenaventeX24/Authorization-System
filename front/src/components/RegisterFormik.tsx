@@ -2,12 +2,11 @@ import { ApolloError } from 'apollo-client';
 import { Formik } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ZodError } from 'zod';
 
 import { RegisterMutationResult } from '@/generated/graphql';
-import { tokenActions } from '@/redux/reducers/tokenReducer';
-import store from '@/redux/store';
-import { initialValues, registerSchema } from '@/utils/registerUtils';
+import { tokenActions } from '@/redux/reducers/TokenReducer';
+import store from '@/redux/Store';
+import { initialValues, registerSchema } from '@/utils/RegisterUtils';
 
 type RegisterFormProps = {
   registerHook: any;
@@ -59,11 +58,7 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
             navigate('/');
           } else throw new Error('SOMETHING_WENT_WRONG');
         } catch (err: any) {
-          if (err instanceof ZodError) {
-            setError(err);
-          } else if (err instanceof Error) {
-            setError(err);
-          } else setError(new Error('SOMETHING_WENT_WRONG'));
+          setError(err);
         }
         actions.setSubmitting(false);
       }}

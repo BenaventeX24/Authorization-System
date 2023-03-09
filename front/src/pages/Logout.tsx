@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { useLogoutQuery } from '@/generated/graphql';
-import { tokenActions } from '@/redux/reducers/tokenReducer';
+import { tokenActions } from '@/redux/reducers/TokenReducer';
 
 export const Logout: React.FC = () => {
   console.log('call');

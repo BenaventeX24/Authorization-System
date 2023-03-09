@@ -10,10 +10,11 @@ import Navbar from '@/components/Navbar';
 import RegisterFormik from '@/components/RegisterFormik';
 import SendButton from '@/components/SendButton';
 import { useRegisterMutation } from '@/generated/graphql';
-import { initialValues, registerFields, registerSchema } from '@/utils/registerUtils';
+import { initialValues, registerFields, registerSchema } from '@/utils/RegisterUtils';
 
 export const Register: React.FC = () => {
   const [register, { loading, error }] = useRegisterMutation();
+  console.log(error);
   const [errorState, setError] = useState<Error | ApolloError | undefined>(error);
 
   return (

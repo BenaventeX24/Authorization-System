@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { authEmail, authName, authPassword, authSurname } from './zodTypes';
+import { authEmail, authName, authPassword, authSurname } from './ZodTypes';
 
 export const registerSchema = z.object({
   email: authEmail,

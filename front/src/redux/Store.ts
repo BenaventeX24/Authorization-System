@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { accessTokenSlice } from './reducers/tokenReducer';
+import { accessTokenSlice } from './reducers/TokenReducer';
 
 const store = configureStore({
   reducer: {
