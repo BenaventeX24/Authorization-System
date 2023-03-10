@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for utils/ZodTypes.ts</title>
+    <title>Code coverage report for utils/LoginUtils.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> ZodTypes.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> LoginUtils.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
@@ -92,7 +92,9 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -123,33 +125,34 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { z } from 'zod';
 &nbsp;
-export const authName = z
-  .string()
-  .min(2, 'Must be at least 2 characters in length')
-  .max(16, 'Must not exceed 16 characters in length')
-  .regex(
-    new RegExp('^[A-Z ][a-zA-Z ]{1,22}$'),
-    'First letter must be upercase and only letters',
-  );
-export const authSurname = z
-  .string()
-  .min(2, 'Must be at least 2 characters in length')
-  .max(22, 'Must not exceed 22 characters in length')
-  .regex(
-    new RegExp('^[A-Z][a-zA-Z ]{1,22}$'),
-    'First letter must be upercase and only letters',
-  );
-export const authEmail = z.string().email('Email must contain @ and domain extension');
-export const authPassword = z
-  .string()
-  .regex(new RegExp('.*[A-Z].*'), 'One uppercase character')
-  .regex(new RegExp('.*[a-z].*'), 'One lowercase character')
-  .regex(new RegExp('.*\\d.*'), 'One number')
-  .regex(
-    new RegExp('.*[`~&lt;&gt;?,./!@#$%^&amp;*()\\-_+="\'|{}\\[\\];:\\\\].*'),
-    'One special character',
-  )
-  .min(8, 'Must be at least 8 characters in length');
+import { fields } from '@/utils/RegisterUtils';
+&nbsp;
+import { authEmail, authPassword } from './ZodTypes';
+&nbsp;
+export const loginSchema = z.object({
+  email: authEmail,
+  password: authPassword,
+});
+&nbsp;
+export const initialValues = {
+  email: '',
+  password: '',
+};
+&nbsp;
+export const loginFields: Array&lt;fields&gt; = [
+  {
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email',
+    label: 'Email',
+  },
+  {
+    name: 'password',
+    type: 'password',
+    placeholder: 'Password',
+    label: 'Password',
+  },
+];
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

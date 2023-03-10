@@ -1,6 +1,9 @@
 import * as Apollo from '@apollo/client';
 
 import {
+  LoginDocument,
+  LoginMutation,
+  LoginMutationVariables,
   RegisterDocument,
   RegisterMutation,
   RegisterMutationVariables,
@@ -23,9 +26,22 @@ const mockedUseRegisterMutation = jest
     },
   );
 
+const mockedUseLoginMutation = jest
+  .fn()
+  .mockImplementation(
+    (baseOptions?: Apollo.MutationHookOptions<LoginMutation, LoginMutationVariables>) => {
+      const options = { ...{}, ...baseOptions };
+      return Apollo.useMutation<LoginMutation, LoginMutationVariables>(
+        LoginDocument,
+        options,
+      );
+    },
+  );
+
 jest.mock('@/generated/graphql', () => ({
   ...(jest.requireActual('@/generated/graphql') as any),
   useRegisterMutation: () => mockedUseRegisterMutation(),
+  useLoginMutation: () => mockedUseLoginMutation(),
 }));
 
-export { mockedUseRegisterMutation };
+export { mockedUseLoginMutation, mockedUseRegisterMutation };

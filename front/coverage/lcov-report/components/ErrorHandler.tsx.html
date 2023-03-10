@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">86.2% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>30/33</span>
+                <span class='fraction'>25/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">86.2% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>30/33</span>
+                <span class='fraction'>25/29</span>
             </div>
         
             
@@ -92,11 +92,7 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -107,28 +103,24 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Alert } from '@mui/material';
 import { ApolloError } from 'apollo-boost';
 import React from 'react';
@@ -145,21 +137,17 @@ export const ErrorHandler: React.FC&lt;ErrorHandlerProps&gt; = ({
   console.log(error);
   if (error === undefined || error.message === undefined) <span class="branch-0 cbranch-no" title="branch not covered" >return &lt;&gt;&lt;/&gt;;</span>
   switch (error.message) {
-    case 'REPEATED_EMAIL':
-      return &lt;Alert severity="error"&gt;{ErrorMessages.REPEATED_EMAIL}&lt;/Alert&gt;;
-    case 'PASSWORDS_DONT_MATCH':
-      return (
-        &lt;Alert severity="warning" data-testid="alert"&gt;
-          {ErrorMessages.PASSWORDS_DONT_MATCH}
-        &lt;/Alert&gt;
-      );
+<span class="branch-0 cbranch-no" title="branch not covered" >    case 'REPEATED_EMAIL':</span>
+<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.REPEATED_EMAIL}&lt;/Alert&gt;;</span>
+<span class="branch-0 cbranch-no" title="branch not covered" >    case 'PASSWORDS_DONT_MATCH':</span>
+<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="warning"&gt;{ErrorMessages.PASSWORDS_DONT_MATCH}&lt;/Alert&gt;;</span>
 <span class="branch-0 cbranch-no" title="branch not covered" >    case 'WRONG_CREDENTIALS':</span>
 <span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.WRONG_CREDENTIALS}&lt;/Alert&gt;;</span>
 <span class="branch-0 cbranch-no" title="branch not covered" >    case 'FIELDS_VALIDATION_ERROR':</span>
 <span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.FIELDS_VALIDATION_ERROR}&lt;/Alert&gt;;</span>
 &nbsp;
-<span class="branch-0 cbranch-no" title="branch not covered" >    default:</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.DEFAULT}&lt;/Alert&gt;;</span>
+    default:
+      return &lt;Alert severity="error"&gt;{ErrorMessages.DEFAULT}&lt;/Alert&gt;;
   }
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -169,7 +157,7 @@ export const ErrorHandler: React.FC&lt;ErrorHandlerProps&gt; = ({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-08T19:58:56.445Z
+                at 2023-03-10T02:53:42.308Z
             </div>
         <script src="../prettify.js"></script>
         <script>
