@@ -19,7 +19,9 @@ import {
 import { sign } from "jsonwebtoken";
 import { Request, Response } from "express";
 import { PrismaErrorHandler } from "@/prisma_utils/prisma-error-handler";
-import { Prisma, Users } from "@prisma/client";
+import { Prisma } from "@prisma/client";
+import { loginSchema, registerSchema } from "@/validation/schemas";
+import { ZodError } from "zod";
 
 @ObjectType()
 export class LoginResult {
@@ -86,6 +88,13 @@ export class Authentication {
     @Ctx() { req, res }: GraphContext
   ) {
     try {
+      registerSchema.parse({
+        email: email,
+        password: password,
+        name: name,
+        surname: surname,
+      });
+
       return await Promise.resolve(
         prisma.users.create({
           data: {
@@ -101,9 +110,10 @@ export class Authentication {
     } catch (e: any) {
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         throw PrismaErrorHandler(e);
+      } else if (e instanceof ZodError) {
+        throw new Error(`Fields validation failed at, ${e.issues}`);
       } else throw e;
     }
-    return true;
   }
 
   @Mutation(() => LoginResult)
@@ -112,7 +122,17 @@ export class Authentication {
     @Arg("password") password: string,
     @Ctx() { req, res }: GraphContext
   ): Promise<LoginResult | Error> {
-    return this.authenticate(email, password, req, res);
+    try {
+      loginSchema.parse({
+        email: email,
+        password: password,
+      });
+      return this.authenticate(email, password, req, res);
+    } catch (e: any) {
+      if (e instanceof ZodError) {
+        throw new Error(`Fields validation failed at, ${e.issues}`);
+      } else throw e;
+    }
   }
 
   @Query(() => Boolean)
