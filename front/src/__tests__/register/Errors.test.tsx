@@ -9,19 +9,7 @@ import { Register } from '@/pages/Register';
 import store from '@/redux/Store';
 import { ErrorMessages } from '@/utils/ErrorMessages';
 import { registerFields } from '@/utils/RegisterUtils';
-import { mocksError, registerMocks } from '@/utils/TestsUtils';
-
-type IMockedData = {
-  [key: string]: string;
-};
-
-const mockedData: IMockedData = {
-  email: 'email@email.com',
-  password: 'Password123!',
-  passwordConfirmation: 'Password123!',
-  name: 'Name',
-  surname: 'Surname',
-};
+import { mockedData, mocksError, registerMocks } from '@/utils/TestsUtils';
 
 test('after sending incorrect data it will show an alert component telling the user what the problem was', async () => {
   const view = render(

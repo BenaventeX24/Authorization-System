@@ -10,7 +10,7 @@ import { mockLocalStorage } from '@/__tests__/mocks/mockedLocalStorage';
 import Login from '@/pages/Login';
 import store from '@/redux/Store';
 import { loginFields } from '@/utils/LoginUtils';
-import { mockedData, mocks } from '@/utils/TestsUtils';
+import { loginMocks, mockedData } from '@/utils/TestsUtils';
 
 const { setItemMock } = mockLocalStorage();
 
@@ -18,7 +18,7 @@ test('Render each component needed in register correctly', async () => {
   const view = render(
     <BrowserRouter>
       <Provider store={store}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={loginMocks} addTypename={false}>
           <Login />
         </MockedProvider>
       </Provider>
@@ -37,7 +37,7 @@ test('fill the inputs and send data', async () => {
   const view = render(
     <BrowserRouter>
       <Provider store={store}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={loginMocks} addTypename={false}>
           <Login />
         </MockedProvider>
       </Provider>
