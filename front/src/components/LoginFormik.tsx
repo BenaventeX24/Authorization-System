@@ -44,9 +44,11 @@ const RegisterFormik: React.FC<LoginFormProps> = ({
               }),
             );
 
-            store.dispatch(tokenActions.setToken(response.data.login.accessToken));
-
-            navigate('/');
+            Promise.resolve(
+              store.dispatch(tokenActions.setToken(response.data.login.accessToken)),
+            ).then(() => {
+              navigate('/');
+            });
           } else throw new Error('SOMETHING_WENT_WRONG');
         } catch (err: any) {
           setError(err);
