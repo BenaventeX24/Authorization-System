@@ -9,7 +9,6 @@ export const tokenLink = new TokenRefreshLink({
   accessTokenField: 'accessToken',
   isTokenValidOrUndefined: () => {
     const token = store.getState().accessToken;
-    console.log(store.getState().accessToken);
     if (!token) return true;
     try {
       const { exp } = jwtDecode(token) as JwtPayload;

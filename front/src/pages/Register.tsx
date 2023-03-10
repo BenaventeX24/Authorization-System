@@ -14,7 +14,6 @@ import { initialValues, registerFields, registerSchema } from '@/utils/RegisterU
 
 export const Register: React.FC = () => {
   const [register, { loading, error }] = useRegisterMutation();
-  console.log(error);
   const [errorState, setError] = useState<Error | ApolloError | undefined>(error);
 
   return (

@@ -7,7 +7,6 @@ import { useLogoutQuery } from '@/generated/graphql';
 import { tokenActions } from '@/redux/reducers/TokenReducer';
 
 export const Logout: React.FC = () => {
-  console.log('call');
   const dispatch = useDispatch();
   const { data, loading } = useLogoutQuery({
     fetchPolicy: 'network-only',
