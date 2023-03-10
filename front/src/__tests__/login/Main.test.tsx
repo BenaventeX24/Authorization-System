@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import { mockedUseLoginMutation } from '@/__tests__/mocks/mockedApolloHooks';
-import { mockLocalStorage } from '@/__tests__/mocks/mockedLocalStorage';
+import mockLocalStorage from '@/__tests__/mocks/mockedLocalStorage';
 import Login from '@/pages/Login';
 import store from '@/redux/Store';
 import { loginFields } from '@/utils/LoginUtils';
@@ -58,8 +58,8 @@ test('fill the inputs and send data', async () => {
       ) as Element;
 
       expect(input).toHaveValue(mockedData[`${field.name}`]);
-      expect(view.queryByTestId('send-btn')).not.toBeDisabled();
     });
+    expect(view.queryByTestId('send-btn')).not.toBeDisabled();
   });
 
   fireEvent.click(view.queryByTestId('send-btn') as Element);

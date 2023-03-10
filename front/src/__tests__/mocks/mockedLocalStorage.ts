@@ -1,4 +1,4 @@
-export const mockLocalStorage = () => {
+const mockLocalStorage = () => {
   const setItemMock = jest.fn();
   const getItemMock = jest.fn();
 
@@ -14,3 +14,5 @@ export const mockLocalStorage = () => {
 
   return { setItemMock, getItemMock };
 };
+
+export default mockLocalStorage;

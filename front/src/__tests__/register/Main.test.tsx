@@ -59,8 +59,8 @@ test('fill the inputs and send data', async () => {
       ) as Element;
 
       expect(input).toHaveValue(mockedData[`${field.name}`]);
-      expect(view.queryByTestId('send-btn')).not.toBeDisabled();
     });
+    expect(view.queryByTestId('send-btn')).not.toBeDisabled();
   });
 
   fireEvent.click(view.queryByTestId('send-btn') as Element);
