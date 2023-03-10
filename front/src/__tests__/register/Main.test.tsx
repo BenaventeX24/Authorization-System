@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import { mockedUseRegisterMutation } from '@/__tests__/mocks/mockedApolloHooks';
-import { mockLocalStorage } from '@/__tests__/mocks/mockedLocalStorage';
+import mockLocalStorage from '@/__tests__/mocks/mockedLocalStorage';
 import { Register } from '@/pages/Register';
 import store from '@/redux/Store';
 import { registerFields } from '@/utils/RegisterUtils';

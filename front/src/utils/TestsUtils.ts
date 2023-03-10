@@ -8,17 +8,19 @@ const loginRequest = {
   },
 };
 
+const registerRequest = {
+  query: RegisterDocument,
+  variables: {
+    email: 'email@email.com',
+    password: 'Password123!',
+    name: 'Name',
+    surname: 'Surname',
+  },
+};
+
 export const registerMocks = [
   {
-    request: {
-      query: RegisterDocument,
-      variables: {
-        email: 'email@email.com',
-        password: 'Password123!',
-        name: 'Name',
-        surname: 'Surname',
-      },
-    },
+    request: { ...registerRequest },
     result: {
       data: {
         register: { accessToken: 'token', usersurname: 'usersurname', username: 'name' },
@@ -40,16 +42,7 @@ export const loginMocks = [
 
 export const mocksError = [
   {
-    request: {
-      query: RegisterDocument,
-      variables: {
-        email: 'email@email.com',
-        password: 'Password123!',
-        name: 'Name',
-        surname: 'Surname',
-      },
-    },
-
+    request: { ...registerRequest },
     error: new Error('REPEATED_EMAIL'),
   },
 ];
