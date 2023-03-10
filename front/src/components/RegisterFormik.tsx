@@ -58,8 +58,6 @@ const RegisterFormik: React.FC<RegisterFormProps> = ({
             ).then(() => {
               navigate('/');
             });
-
-            navigate('/');
           } else throw new Error('SOMETHING_WENT_WRONG');
         } catch (err: any) {
           setError(err);
