@@ -15,13 +15,13 @@ import { ZodError } from 'zod';
 import { Register } from '@/pages/Register';
 import store from '@/redux/Store';
 import { registerFields } from '@/utils/RegisterUtils';
-import { mockedData, mocks } from '@/utils/TestsUtils';
+import { mockedData, registerMocks } from '@/utils/TestsUtils';
 
 test('A popover should show telling the user what input validation is missing', async () => {
   const view = render(
     <BrowserRouter>
       <Provider store={store}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={registerMocks} addTypename={false}>
           <Register />
         </MockedProvider>
       </Provider>
@@ -61,7 +61,7 @@ test('Send button is disabled until all fields are filled and pass the constrain
   const view = render(
     <BrowserRouter>
       <Provider store={store}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={registerMocks} addTypename={false}>
           <Register />
         </MockedProvider>
       </Provider>

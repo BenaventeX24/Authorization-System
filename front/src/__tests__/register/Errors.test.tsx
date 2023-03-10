@@ -9,7 +9,7 @@ import { Register } from '@/pages/Register';
 import store from '@/redux/Store';
 import { ErrorMessages } from '@/utils/ErrorMessages';
 import { registerFields } from '@/utils/RegisterUtils';
-import { mocks, mocksError } from '@/utils/TestsUtils';
+import { mocksError, registerMocks } from '@/utils/TestsUtils';
 
 type IMockedData = {
   [key: string]: string;
@@ -27,7 +27,7 @@ test('after sending incorrect data it will show an alert component telling the u
   const view = render(
     <BrowserRouter>
       <Provider store={store}>
-        <MockedProvider mocks={mocks} addTypename={false}>
+        <MockedProvider mocks={registerMocks} addTypename={false}>
           <Register />
         </MockedProvider>
       </Provider>

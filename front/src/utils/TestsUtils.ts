@@ -1,10 +1,6 @@
-import { ApolloError } from 'apollo-boost';
-import { GraphQLError } from 'graphql';
+import { LoginDocument, RegisterDocument } from '@/generated/graphql';
 
-import { RegisterDocument } from '@/generated/graphql';
-import { ErrorMessages } from '@/utils/ErrorMessages';
-
-export const mocks = [
+export const registerMocks = [
   {
     request: {
       query: RegisterDocument,
@@ -18,6 +14,23 @@ export const mocks = [
     result: {
       data: {
         register: { accessToken: 'token', usersurname: 'usersurname', username: 'name' },
+      },
+    },
+  },
+];
+
+export const loginMocks = [
+  {
+    request: {
+      query: LoginDocument,
+      variables: {
+        email: 'email@email.com',
+        password: 'Password123!',
+      },
+    },
+    result: {
+      data: {
+        login: { accessToken: 'token', usersurname: 'usersurname', username: 'name' },
       },
     },
   },
