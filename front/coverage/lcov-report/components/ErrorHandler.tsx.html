@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.2% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/29</span>
+                <span class='fraction'>26/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.2% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/29</span>
+                <span class='fraction'>26/28</span>
             </div>
         
             
@@ -91,8 +91,7 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -103,24 +102,23 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Alert } from '@mui/material';
 import { ApolloError } from 'apollo-boost';
 import React from 'react';
@@ -134,13 +132,12 @@ type ErrorHandlerProps = {
 export const ErrorHandler: React.FC&lt;ErrorHandlerProps&gt; = ({
   error,
 }: ErrorHandlerProps) =&gt; {
-  console.log(error);
   if (error === undefined || error.message === undefined) <span class="branch-0 cbranch-no" title="branch not covered" >return &lt;&gt;&lt;/&gt;;</span>
   switch (error.message) {
-<span class="branch-0 cbranch-no" title="branch not covered" >    case 'REPEATED_EMAIL':</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="error"&gt;{ErrorMessages.REPEATED_EMAIL}&lt;/Alert&gt;;</span>
-<span class="branch-0 cbranch-no" title="branch not covered" >    case 'PASSWORDS_DONT_MATCH':</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;Alert severity="warning"&gt;{ErrorMessages.PASSWORDS_DONT_MATCH}&lt;/Alert&gt;;</span>
+    case 'REPEATED_EMAIL':
+      return &lt;Alert severity="error"&gt;{ErrorMessages.REPEATED_EMAIL}&lt;/Alert&gt;;
+    case 'PASSWORDS_DONT_MATCH':
+      return &lt;Alert severity="warning"&gt;{ErrorMessages.PASSWORDS_DONT_MATCH}&lt;/Alert&gt;;
     case 'WRONG_CREDENTIALS':
       return &lt;Alert severity="error"&gt;{ErrorMessages.WRONG_CREDENTIALS}&lt;/Alert&gt;;
 <span class="branch-0 cbranch-no" title="branch not covered" >    case 'FIELDS_VALIDATION_ERROR':</span>
@@ -157,7 +154,7 @@ export const ErrorHandler: React.FC&lt;ErrorHandlerProps&gt; = ({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-10T03:29:57.279Z
+                at 2023-03-11T17:55:16.715Z
             </div>
         <script src="../prettify.js"></script>
         <script>

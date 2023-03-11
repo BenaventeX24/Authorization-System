@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.29% </span>
+                <span class="strong">85.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>269/335</span>
+                <span class='fraction'>287/335</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.29% </span>
+                <span class="strong">85.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>269/335</span>
+                <span class='fraction'>287/335</span>
             </div>
         
             
@@ -583,15 +583,15 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -673,15 +673,15 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -918,15 +918,15 @@ export type LoginMutationFn = Apollo.MutationFunction&lt;
  *   },
  * });
  */
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export function useLoginMutation(</span></span>
-<span class="cstat-no" title="statement not covered" >  baseOptions?: Apollo.MutationHookOptions&lt;LoginMutation, LoginMutationVariables&gt;,</span>
-<span class="cstat-no" title="statement not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >  const options = { ...defaultOptions, ...baseOptions };</span>
-<span class="cstat-no" title="statement not covered" >  return Apollo.useMutation&lt;LoginMutation, LoginMutationVariables&gt;(</span>
-<span class="cstat-no" title="statement not covered" >    LoginDocument,</span>
-<span class="cstat-no" title="statement not covered" >    options,</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export function useLoginMutation(
+  baseOptions?: Apollo.MutationHookOptions&lt;LoginMutation, LoginMutationVariables&gt;,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation&lt;LoginMutation, LoginMutationVariables&gt;(
+    LoginDocument,
+    options,
+  );
+}
 export type LoginMutationHookResult = ReturnType&lt;typeof useLoginMutation&gt;;
 export type LoginMutationResult = Apollo.MutationResult&lt;LoginMutation&gt;;
 export type LoginMutationOptions = Apollo.BaseMutationOptions&lt;
@@ -1008,15 +1008,15 @@ export type RegisterMutationFn = Apollo.MutationFunction&lt;
  *   },
  * });
  */
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export function useRegisterMutation(</span></span>
-<span class="cstat-no" title="statement not covered" >  baseOptions?: Apollo.MutationHookOptions&lt;RegisterMutation, RegisterMutationVariables&gt;,</span>
-<span class="cstat-no" title="statement not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >  const options = { ...defaultOptions, ...baseOptions };</span>
-<span class="cstat-no" title="statement not covered" >  return Apollo.useMutation&lt;RegisterMutation, RegisterMutationVariables&gt;(</span>
-<span class="cstat-no" title="statement not covered" >    RegisterDocument,</span>
-<span class="cstat-no" title="statement not covered" >    options,</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export function useRegisterMutation(
+  baseOptions?: Apollo.MutationHookOptions&lt;RegisterMutation, RegisterMutationVariables&gt;,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation&lt;RegisterMutation, RegisterMutationVariables&gt;(
+    RegisterDocument,
+    options,
+  );
+}
 export type RegisterMutationHookResult = ReturnType&lt;typeof useRegisterMutation&gt;;
 export type RegisterMutationResult = Apollo.MutationResult&lt;RegisterMutation&gt;;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions&lt;
@@ -1075,7 +1075,7 @@ export type TestAuthQueryResult = Apollo.QueryResult&lt;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-10T17:00:42.731Z
+                at 2023-03-11T17:55:16.715Z
             </div>
         <script src="../prettify.js"></script>
         <script>
