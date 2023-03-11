@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthMiddleware = void 0;
-const jsonwebtoken_1 = require("jsonwebtoken");
+const jsonwebtoken_1 = require("../../node_modules/jsonwebtoken");
 const AuthMiddleware = ({ context }, next) => {
     const authorizationHeader = context.req.headers["authorization"];
     let refreshToken = (0, jsonwebtoken_1.verify)(context.req.cookies[process.env.COOKIE_NAME], process.env.TOKEN_SECRET);

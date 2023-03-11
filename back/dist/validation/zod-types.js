@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authPassword = exports.authEmail = exports.authSurname = exports.authName = void 0;
-const zod_1 = require("zod");
+const zod_1 = require("../../node_modules/zod");
 exports.authName = zod_1.z
     .string()
     .min(2, "Must be at least 2 characters in length")

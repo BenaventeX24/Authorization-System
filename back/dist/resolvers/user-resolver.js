@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userResolver = exports.getUsersEmail = void 0;
 const type_graphql_1 = require("type-graphql");
-const prisma_client_1 = require("@/prisma_utils/prisma-client");
+const prisma_client_1 = require("../prisma_utils/prisma-client");
 let getUsersEmail = class getUsersEmail {
 };
 __decorate([
