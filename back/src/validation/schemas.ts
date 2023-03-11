@@ -1,10 +1,10 @@
+import { z } from "zod";
 import {
   authEmail,
   authName,
   authPassword,
   authSurname,
 } from "@/validation/zod-types";
-import { z } from "zod";
 
 export const registerSchema = z.object({
   email: authEmail,

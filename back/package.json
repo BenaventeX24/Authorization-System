@@ -1,24 +1,29 @@
 {
-  "name": "ttes-server",
-  "version": "0.1.0",
-  "description": "Backend for The Technician Electronics Store",
+  "name": "auth-server",
+  "version": "1.0.0",
+  "description": "Authentication system",
   "main": "index.ts",
   "scripts": {
-    "dev": "npx nodemon --exec ts-node src/index.ts"
+    "clean": "rimraf dist/*",
+    "lint": "eslint -c .eslintrc.json --fix",
+    "tsc": "tsc",
+    "build": "yarn run clean && yarn run lint && yarn run tsc",
+    "run:build": "npx node -r ts-node/register -r tsconfig-paths/register dist/index.js",
+    "dev": "npx nodemon --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BenaventeX24/The-Technician-ES.git"
+    "url": ""
   },
   "keywords": [
-    "e-commerce"
+    "Auth System"
   ],
   "author": "Matías Benavente",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BenaventeX24/The-Technician-ES/issues"
+    "url": "https://github.com/BenaventeX24/Authorization-System/issues"
   },
-  "homepage": "https://github.com/BenaventeX24/The-Technician-ES#readme",
   "engines": {
     "node": "^19.4.0"
   },

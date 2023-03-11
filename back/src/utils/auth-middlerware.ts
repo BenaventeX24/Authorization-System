@@ -1,6 +1,6 @@
+import { GraphContext } from "@/utils/GraphContext";
 import { MiddlewareFn } from "type-graphql";
 import { verify } from "jsonwebtoken";
-import { GraphContext } from "@/utils/GraphContext";
 
 export const AuthMiddleware: MiddlewareFn<GraphContext> = (
   { context },

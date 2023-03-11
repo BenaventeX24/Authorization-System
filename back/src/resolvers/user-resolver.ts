@@ -1,5 +1,5 @@
-import { prisma } from "@/prisma_utils/prisma-client";
 import { Field, ObjectType, Query, Resolver } from "type-graphql";
+import { prisma } from "@/prisma_utils/prisma-client";
 
 @ObjectType()
 export class getUsersEmail {

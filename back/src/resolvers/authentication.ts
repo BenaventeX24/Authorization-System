@@ -8,10 +8,11 @@ import {
   UseMiddleware,
   Query,
 } from "type-graphql";
-import { prisma } from "../prisma_utils/prisma-client";
-import { compare, compareSync, hash } from "bcryptjs";
-import { GraphContext } from "../utils/GraphContext";
-import { AuthMiddleware } from "../utils/auth-middlerware";
+import { compareSync, hash } from "bcryptjs";
+import { ZodError } from "zod";
+import { prisma } from "@/prisma_utils/prisma-client";
+import { GraphContext } from "@/utils/GraphContext";
+import { AuthMiddleware } from "@/utils/auth-middlerware";
 import {
   issueRefreshToken,
   revokeRefreshToken,
@@ -21,7 +22,6 @@ import { Request, Response } from "express";
 import { PrismaErrorHandler } from "@/prisma_utils/prisma-error-handler";
 import { Prisma } from "@prisma/client";
 import { loginSchema, registerSchema } from "@/validation/schemas";
-import { ZodError } from "zod";
 
 @ObjectType()
 export class LoginResult {
