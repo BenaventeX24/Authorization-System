@@ -5,13 +5,18 @@ COPY yarn.lock .
 RUN yarn install
 COPY . .
 RUN yarn run build
+RUN npm install -g serve
+CMD ["npx","serve","-s","dist"]
 
-FROM nginx
-COPY --from=build /front/dist /usr/share/nginx/html
-#RUN apt-get update && apt-get install -y gnupg2 curl
-#RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-#RUN apt-get install -y nodejs
-#RUN npm install --global yarn
+#FROM node:19-alpine AS serve
+#RUN mkdir front
 #WORKDIR /front
-WORKDIR /usr/share/nginx/html
-ENTRYPOINT ["nginx","-g","daemon off;"]
+#RUN mkdir dist
+#COPY --from=build /front/dist /front/dist
+#EXPOSE 3000
+#RUN yarn global add vite
+#CMD ["npx","vite","preview","dist","--port","3000"]
+
+FROM nginx:stable-alpine
+COPY --from=build /front/dist /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
