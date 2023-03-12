@@ -64,7 +64,7 @@ let Authentication = class Authentication {
                         if ((0, bcryptjs_1.compareSync)(password, user.password)) {
                             (0, issue_refresh_token_1.issueRefreshToken)(req, res, user.user_id, user.token_v);
                             result = {
-                                accessToken: (0, jsonwebtoken_1.sign)({ user_id: user.user_id }, process.env.TOKEN_SECRET, {
+                                accessToken: (0, jsonwebtoken_1.sign)({ user_id: user.user_id }, process.env.AUTHSYS_TOKEN_SECRET, {
                                     expiresIn: "2m",
                                 }),
                                 username: user.name,
