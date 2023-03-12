@@ -47,7 +47,9 @@ const app = express();
     });
 
     app.listen(process.env.PORT, () => {
-      console.log(`Express server started in port: ${process.env.PORT}`);
+      console.log(
+        `Express server started in port: ${process.env.AUTHSYS_PORT}`
+      );
     });
   });
 })();

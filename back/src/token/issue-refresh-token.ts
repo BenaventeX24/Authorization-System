@@ -7,13 +7,13 @@ export const issueRefreshToken = (
   user_id: number,
   token_v: number
 ) => {
-  if (!req.cookies[process.env.COOKIE_NAME as string]) {
+  if (!req.cookies[process.env.AUTHSYS_COOKIE_NAME as string]) {
     res.cookie(
-      process.env.COOKIE_NAME as string,
+      process.env.AUTHSYS_COOKIE_NAME as string,
 
       sign(
         { user_id: user_id, token_v: token_v },
-        process.env.TOKEN_SECRET as string,
+        process.env.AUTHSYS_TOKEN_SECRET as string,
         {
           expiresIn: "180d",
         }

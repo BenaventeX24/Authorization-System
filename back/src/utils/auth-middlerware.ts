@@ -8,8 +8,8 @@ export const AuthMiddleware: MiddlewareFn<GraphContext> = (
 ) => {
   const authorizationHeader = context.req.headers["authorization"];
   let refreshToken = verify(
-    context.req.cookies[process.env.COOKIE_NAME as string],
-    process.env.TOKEN_SECRET!
+    context.req.cookies[process.env.AUTHSYS_COOKIE_NAME as string],
+    process.env.AUTHSYS_TOKEN_SECRET!
   ) as any;
 
   if (!refreshToken) {
@@ -23,7 +23,7 @@ export const AuthMiddleware: MiddlewareFn<GraphContext> = (
   try {
     const token = authorizationHeader.split(" ")[1];
 
-    const payload = verify(token, process.env.TOKEN_SECRET!);
+    const payload = verify(token, process.env.AUTHSYS_TOKEN_SECRET!);
 
     context.payload = payload as any;
   } catch (err) {

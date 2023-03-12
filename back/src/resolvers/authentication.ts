@@ -62,7 +62,7 @@ export class Authentication {
             result = {
               accessToken: sign(
                 { user_id: user.user_id },
-                process.env.TOKEN_SECRET as string,
+                process.env.AUTHSYS_TOKEN_SECRET as string,
                 {
                   expiresIn: "2m",
                 }
