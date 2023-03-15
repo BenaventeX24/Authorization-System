@@ -1,6 +1,6 @@
 FROM node:19-alpine AS build
-ENV VITE_SERVER_URL http://localhost:8080/api
-ENV VITE_SERVER_REFRESH_TOKEN http://localhost:8080/api/refresh-token
+#ENV VITE_SERVER_URL
+#ENV VITE_SERVER_REFRESH_TOKEN 
 EXPOSE 3000
 
 WORKDIR /front
