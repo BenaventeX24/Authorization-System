@@ -23,14 +23,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Authentication = exports.LoginResult = void 0;
 const type_graphql_1 = require("type-graphql");
-const bcryptjs_1 = require("../../node_modules/bcryptjs");
-const zod_1 = require("../../node_modules/zod");
+const bcryptjs_1 = require("bcryptjs");
+const zod_1 = require("zod");
 const prisma_client_1 = require("../prisma_utils/prisma-client");
 const auth_middlerware_1 = require("../utils/auth-middlerware");
 const issue_refresh_token_1 = require("../token/issue-refresh-token");
-const jsonwebtoken_1 = require("../../node_modules/jsonwebtoken");
+const jsonwebtoken_1 = require("jsonwebtoken");
 const prisma_error_handler_1 = require("../prisma_utils/prisma-error-handler");
-const client_1 = require("../../node_modules/@prisma/client");
+const client_1 = require("@prisma/client");
 const schemas_1 = require("../validation/schemas");
 let LoginResult = class LoginResult {
 };

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import '../index.css';
 
 import createTheme from '@mui/material/styles/createTheme';

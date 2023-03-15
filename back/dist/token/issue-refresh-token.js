@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.revokeRefreshToken = exports.issueRefreshToken = void 0;
-const jsonwebtoken_1 = require("../../node_modules/jsonwebtoken");
+const jsonwebtoken_1 = require("jsonwebtoken");
 const issueRefreshToken = (req, res, user_id, token_v) => {
     if (!req.cookies[process.env.AUTHSYS_COOKIE_NAME]) {
         res.cookie(process.env.AUTHSYS_COOKIE_NAME, (0, jsonwebtoken_1.sign)({ user_id: user_id, token_v: token_v }, process.env.AUTHSYS_TOKEN_SECRET, {

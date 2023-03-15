@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.issueAccessToken = void 0;
-const jsonwebtoken_1 = require("../../node_modules/jsonwebtoken");
+const jsonwebtoken_1 = require("jsonwebtoken");
 const issueAccessToken = (req) => {
     try {
         let payload = (0, jsonwebtoken_1.verify)(req.cookies[process.env.AUTHSYS_COOKIE_NAME], process.env.AUTHSYS_TOKEN_SECRET);

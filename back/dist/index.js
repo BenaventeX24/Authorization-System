@@ -35,13 +35,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("../node_modules/reflect-metadata");
-const express_1 = __importDefault(require("../node_modules/express"));
+require("reflect-metadata");
+const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 const apollo_server_express_1 = require("apollo-server-express");
 const type_graphql_1 = require("type-graphql");
 const authentication_1 = require("./resolvers/authentication");
-const cookie_parser_1 = __importDefault(require("../node_modules/cookie-parser"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const issue_access_token_1 = require("./token/issue-access-token");
 const cors_1 = __importDefault(require("cors"));
 const user_resolver_1 = require("./resolvers/user-resolver");
@@ -73,8 +73,8 @@ const app = (0, express_1.default)();
         app.post("/refresh-token", (req, res) => {
             res.json((0, issue_access_token_1.issueAccessToken)(req));
         });
-        app.listen(process.env.PORT, () => {
-            console.log(`Express server started in port: ${process.env.AUTHSYS_PORT}`);
+        app.listen(8080, "0.0.0.0", () => {
+            console.log(`Express server started in port: 8080`);
         });
     });
 }))();

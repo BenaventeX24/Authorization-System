@@ -1,0 +1,23 @@
+version: "2.15"
+services:
+  react-ui:
+    build:
+      context: ./front
+    environment:
+      - VITE_SERVER_URL='http://localhost:8000/api'
+      - VITE_SERVER_REFRESH_TOKEN='http://localhost:8000/api/refresh-token'
+    ports:
+      - "3000:3000"
+    container_name: auth-ui
+    stdin_open: true
+  api:
+    build:
+      context: ./back
+    environment:
+      - AUTHSYS_DATABASE_URL=postgresql://badmin:badmin2211@192.168.1.11:5432/bes
+      - AUTHSYS_TOKEN_SECRET=BenaventeAuthSystem
+      - AUTHSYS_COOKIE_NAME=__Secure-1lcb
+    ports:
+      - "8080:8080"
+    container_name: auth-api
+    stdin_open: true

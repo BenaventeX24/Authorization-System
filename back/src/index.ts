@@ -46,10 +46,8 @@ const app = express();
       res.json(issueAccessToken(req));
     });
 
-    app.listen(process.env.PORT, () => {
-      console.log(
-        `Express server started in port: ${process.env.AUTHSYS_PORT}`
-      );
+    app.listen(8080, "0.0.0.0", () => {
+      console.log(`Express server started in port: 8080`);
     });
   });
 })();
