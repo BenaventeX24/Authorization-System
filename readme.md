@@ -1,5 +1,6 @@
 # Fully functional authorization system
 ### Typescript, React, Express, Prisma - PostgreSQL, GraphQL, Material UI
+### Exposed env variables have already been fixed
 
     Apollo
     graphql-codegen
