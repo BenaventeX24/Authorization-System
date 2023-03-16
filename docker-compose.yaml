@@ -4,8 +4,8 @@ services:
     build:
       context: ./front
     environment:
-      - VITE_SERVER_URL='http://localhost:8000/api'
-      - VITE_SERVER_REFRESH_TOKEN='http://localhost:8000/api/refresh-token'
+      - VITE_SERVER_URL=''
+      - VITE_SERVER_REFRESH_TOKEN=''
     ports:
       - "3000:3000"
     container_name: auth-ui
@@ -14,9 +14,9 @@ services:
     build:
       context: ./back
     environment:
-      - AUTHSYS_DATABASE_URL=postgresql://badmin:badmin2211@192.168.1.11:5432/bes
-      - AUTHSYS_TOKEN_SECRET=BenaventeAuthSystem
-      - AUTHSYS_COOKIE_NAME=__Secure-1lcb
+      - AUTHSYS_DATABASE_URL=
+      - AUTHSYS_TOKEN_SECRET=
+      - AUTHSYS_COOKIE_NAME=
     ports:
       - "8080:8080"
     container_name: auth-api

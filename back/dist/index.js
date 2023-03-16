@@ -73,8 +73,13 @@ const app = (0, express_1.default)();
         app.post("/refresh-token", (req, res) => {
             res.json((0, issue_access_token_1.issueAccessToken)(req));
         });
+<<<<<<< HEAD
         app.listen(8080, "0.0.0.0", () => {
             console.log(`Express server started in port: 8080`);
+=======
+        app.listen(process.env.PORT, () => {
+            console.log(`Express server started in port: ${process.env.PORT}`);
+>>>>>>> parent of 0886223... updated build
         });
     });
 }))();
