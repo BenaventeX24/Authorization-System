@@ -1,14 +1,14 @@
 FROM node:19-alpine AS build
-#ENV VITE_SERVER_URL
-#ENV VITE_SERVER_REFRESH_TOKEN 
-EXPOSE 3000
 
 WORKDIR /front
 COPY package.json .
 COPY yarn.lock .
 RUN yarn install
 COPY . .
-
+RUN chmod +x assignENV.sh
+RUN ./assignENV.sh
 RUN yarn run build
-RUN echo envariable: $VITE_SERVER_URL
-CMD ["npx","vite","serve","dist"]
+
+FROM nginx:1.23.3-alpine
+COPY --from=build /front/dist /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
