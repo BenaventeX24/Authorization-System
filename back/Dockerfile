@@ -4,7 +4,9 @@ COPY package.json .
 COPY yarn.lock .
 RUN yarn install
 COPY . .
-RUN npx prisma generate
+RUN chmod +x assignENV.sh
+RUN ./assignENV.sh
+RUN npx prisma migrate deploy
 RUN yarn run build
 EXPOSE 8080
 CMD ["node", "dist/index.js"]

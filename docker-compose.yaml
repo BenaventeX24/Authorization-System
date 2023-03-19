@@ -1,16 +1,32 @@
 version: "2.15"
 services:
+  db:
+    image: postgres:14.1
+    restart: always
+    environment:
+      - POSTGRES_DB=auth
+      - POSTGRES_USER=authadmin
+      - POSTGRES_PASSWORD=authadmin2211
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+    container_name: db
+  api:
+    build:
+      context: ./back
+    ports:
+      - "8080:8080"
+    container_name: auth-api
+    stdin_open: true
   react-ui:
     build:
       context: ./front
     ports:
-      - "80:3000"
+      - "3000:80"
     container_name: auth-ui
     stdin_open: true
-  #api:
-  # build:
-  #  context: ./back
-  #ports:
-  # - "8080:8080"
-  #container_name: auth-api
-  #stdin_open: true
+
+volumes:
+  db:
+    driver: local
