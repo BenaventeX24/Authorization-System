@@ -6,7 +6,7 @@ COPY yarn.lock .
 RUN yarn install
 COPY . .
 RUN chmod +x assignENV.sh
-RUN ./assignENV.sh
+RUN ./createENV.sh api-endpoint refresh-token-endpoint
 RUN yarn run build
 
 FROM nginx:1.23.3-alpine

@@ -5,7 +5,7 @@ COPY yarn.lock .
 RUN yarn install
 COPY . .
 RUN chmod +x assignENV.sh
-RUN ./assignENV.sh
+RUN ./createENV.sh database-url token-secret cookie-name 
 RUN npx prisma migrate deploy
 RUN yarn run build
 EXPOSE 8080
