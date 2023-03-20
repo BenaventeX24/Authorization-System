@@ -25,6 +25,7 @@ export const Register: React.FC = () => {
           display: 'flex',
           justifyContent: 'center',
           marginTop: '40px',
+          width: '100px',
         }}
       >
         <RegisterFormik registerHook={register} setError={setError}>
