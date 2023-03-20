@@ -12,3 +12,5 @@
     formik
     jwt-decode
     zod
+    jest - rtl
+    docker
