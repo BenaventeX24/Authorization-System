@@ -12,7 +12,7 @@ import SendButton from '@/components/SendButton';
 import { useRegisterMutation } from '@/generated/graphql';
 import { initialValues, registerFields, registerSchema } from '@/utils/RegisterUtils';
 
-export const Register: React.FC = () => {
+const Register: React.FC = () => {
   const [register, { loading, error }] = useRegisterMutation();
   const [errorState, setError] = useState<Error | ApolloError | undefined>(error);
 
@@ -56,3 +56,5 @@ export const Register: React.FC = () => {
     </>
   );
 };
+
+export default Register;

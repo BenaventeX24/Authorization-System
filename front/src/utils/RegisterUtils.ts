@@ -1,12 +1,20 @@
 import { z } from 'zod';
 
-import { authEmail, authName, authPassword, authSurname } from './ZodTypes';
+import { TermsAndConditionsLabel } from './LinkToTermsAndConditions';
+import {
+  authEmail,
+  authName,
+  authPassword,
+  authSurname,
+  TermsAndConditions,
+} from './ZodTypes';
 
 export const registerSchema = z.object({
   email: authEmail,
   name: authName,
   surname: authSurname,
   password: authPassword,
+  termsAndConditions: TermsAndConditions,
 });
 
 export const initialValues = {
@@ -15,6 +23,7 @@ export const initialValues = {
   passwordConfirmation: '',
   name: '',
   surname: '',
+  termsAndConditions: false,
 };
 
 export type fields = {
@@ -22,7 +31,7 @@ export type fields = {
   type: string;
   placeholder: string;
   validation?: z.TypeOf<any>;
-  label: string;
+  label: string | JSX.Element;
 };
 
 export const registerFields: Array<fields> = [
@@ -60,5 +69,12 @@ export const registerFields: Array<fields> = [
     placeholder: 'Surname',
     validation: authSurname,
     label: 'Surname',
+  },
+  {
+    name: 'termsAndConditions',
+    type: 'checkbox',
+    placeholder: '',
+    validation: TermsAndConditions,
+    label: TermsAndConditionsLabel,
   },
 ];

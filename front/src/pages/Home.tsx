@@ -6,7 +6,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import { useGetUsersQuery } from '@/generated/graphql';
 
-export const Home: React.FC = () => {
+const Home: React.FC = () => {
   const { data } = useGetUsersQuery({ fetchPolicy: 'network-only' });
   if (!data) return <div>loading...</div>;
 
@@ -39,3 +39,5 @@ export const Home: React.FC = () => {
     </>
   );
 };
+
+export default Home;

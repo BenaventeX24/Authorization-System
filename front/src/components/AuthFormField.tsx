@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Typography } from '@mui/material';
+import { FormControlLabel, Typography } from '@mui/material';
 import { Field } from 'formik';
 import React from 'react';
 import { ZodError } from 'zod';
@@ -25,7 +25,7 @@ interface FormFieldProps {
   name: string;
   type?: string;
   placeholder?: string;
-  label?: string;
+  label?: string | JSX.Element;
   validation?: any;
 }
 
@@ -41,7 +41,7 @@ const FormField: React.FC<FormFieldProps> = ({
     null,
   );
 
-  const handleValidation = (value: string) => {
+  const handleValidation = (value: string | boolean) => {
     try {
       validation?.parse(value);
       setValidationError(null);
@@ -52,11 +52,24 @@ const FormField: React.FC<FormFieldProps> = ({
 
   return (
     <>
-      <Typography sx={{ alignSelf: 'flex-start', marginBottom: '-10px' }}>
-        {label}
-      </Typography>
+      {type !== 'checkbox' && (
+        <Typography sx={{ alignSelf: 'flex-start', marginBottom: '-10px' }}>
+          {label}
+        </Typography>
+      )}
       {type === 'password' ? (
         <PasswordField name={name} placeholder={placeholder} validation={validation} />
+      ) : type === 'checkbox' ? (
+        <>
+          <FormControlLabel
+            sx={{
+              marginLeft: '12px',
+              marginTop: '10px',
+            }}
+            control={<Field name={name} type="checkbox" />}
+            label={label}
+          />
+        </>
       ) : (
         <>
           <CustomFormField

@@ -27,3 +27,4 @@ export const authPassword = z
     'One special character',
   )
   .min(8, 'Must be at least 8 characters in length');
+export const TermsAndConditions = z.literal<boolean>(true);
