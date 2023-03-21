@@ -21,7 +21,7 @@ export const tokenLink = new TokenRefreshLink({
     }
   },
   fetchAccessToken: async () => {
-    return fetch('http://localhost:8000/refresh-token', {
+    return fetch(import.meta.env.VITE_SERVER_REFRESH_TOKEN, {
       method: 'POST',
       credentials: 'include',
     }).then((response) => response.json());
